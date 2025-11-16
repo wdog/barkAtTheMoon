@@ -1,8 +1,8 @@
 {{ define "main" }}
 <div class="max-w-3xl mx-auto">
     <!-- Header -->
-    <header class="mb-16 border-b border-gray-300 dark:border-gray-700 pb-8">
-        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+    <header class="pb-8 mb-16 border-b border-gray-300 dark:border-gray-700">
+        <h1 class="mb-4 text-5xl font-bold tracking-tight text-gray-900 md:text-6xl dark:text-white">
             {{ .Title }}
         </h1>
         {{ with .Content }}
@@ -14,13 +14,13 @@
 
     <!-- Links List from individual files -->
     {{ if .Pages }}
-    <div class="space-y-0 border-l-2 border-gray-200 dark:border-gray-700 pl-0">
+    <div class="pl-0 space-y-0 border-l-2 border-gray-200 dark:border-gray-700">
         {{ range .Pages.ByDate.Reverse }}
-        <article class="group py-6 pl-6 pr-2 -ml-0.5 border-l-2 border-transparent hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
+        <article class="group py-6 pl-6 pr-2 -ml-0.5 border-l-2 border-transparent hover:bg-gray-700 hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
             <div class="flex items-start gap-4">
                 <!-- External link icon -->
                 <div class="flex-shrink-0 mt-1">
-                    <svg class="w-5 h-5 text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-gray-400 transition-colors group-hover:text-primary-600 dark:group-hover:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                     </svg>
                 </div>
@@ -31,9 +31,9 @@
                         <h3 class="text-xl font-bold">
                             {{ if .Params.link }}
                             <a href="{{ .Params.link }}" target="_blank" rel="noopener"
-                               class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                               class="text-gray-900 transition-colors dark:text-white hover:text-primary-600 dark:hover:text-primary-400">
                                 {{ .Title }}
-                                <svg class="inline-block w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="inline-block w-4 h-4 ml-1 transition-opacity opacity-0 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                 </svg>
                             </a>
@@ -42,18 +42,18 @@
                             {{ end }}
                         </h3>
                         <!-- Date -->
-                        <time datetime="{{ .Date.Format "2006-01-02" }}" class="text-sm text-gray-500 dark:text-gray-400 font-mono tabular-nums whitespace-nowrap">
+                        <time datetime="{{ .Date.Format "2006-01-02" }}" class="font-mono text-sm text-gray-500 dark:text-gray-400 tabular-nums whitespace-nowrap">
                             {{ .Date.Format "Jan 02, 2006" }}
                         </time>
                     </div>
 
                     <!-- Description from params or content -->
                     {{ if .Params.description }}
-                    <p class="text-gray-600 dark:text-gray-400 mb-3 leading-relaxed">
+                    <p class="mb-3 leading-relaxed text-gray-600 dark:text-gray-400">
                         {{ .Params.description }}
                     </p>
                     {{ else if .Content }}
-                    <div class="text-gray-600 dark:text-gray-400 mb-3 leading-relaxed prose prose-sm dark:prose-invert">
+                    <div class="mb-3 leading-relaxed prose-sm prose text-gray-600 dark:text-gray-400 dark:prose-invert">
                         {{ .Content }}
                     </div>
                     {{ end }}
@@ -76,8 +76,8 @@
 
     {{ else }}
     <!-- No links -->
-    <div class="text-center py-16">
-        <p class="text-gray-600 dark:text-gray-400 italic">
+    <div class="py-16 text-center">
+        <p class="italic text-gray-600 dark:text-gray-400">
             No links yet.
         </p>
     </div>

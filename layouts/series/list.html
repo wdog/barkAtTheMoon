@@ -1,0 +1,100 @@
+{{ define "main" }}
+<div class="max-w-3xl mx-auto">
+    <!-- Header - Series Info -->
+    <header class="mb-16 border-b border-gray-300 dark:border-gray-700 pb-8">
+        <!-- Series Badge Large -->
+        <div class="mb-4">
+            <span class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300 rounded-lg">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                {{ .Title }}
+            </span>
+        </div>
+
+        <!-- Count and Description -->
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
+            {{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }} in this series
+        </h1>
+
+        {{ with .Description }}
+        <p class="text-lg text-gray-600 dark:text-gray-400 italic">
+            {{ . }}
+        </p>
+        {{ end }}
+    </header>
+
+    <!-- Posts grouped by year -->
+    {{ if .Pages }}
+    <div class="space-y-16">
+        {{ range .Pages.GroupByDate "2006" }}
+        <!-- Year -->
+        <section>
+            <h2 class="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-6 font-medium">
+                {{ .Key }}
+            </h2>
+
+            <!-- Posts list -->
+            <ul class="space-y-0 border-l-2 border-cyan-200 dark:border-cyan-700 pl-0">
+                {{ range .Pages }}
+                <li class="group">
+                    <div class="py-3 pl-6 pr-2 -ml-0.5 border-l-2 border-transparent hover:border-cyan-500 dark:hover:border-cyan-400 transition-colors">
+                        <!-- Title and Date line -->
+                        <a href="{{ .RelPermalink }}"
+                           class="flex items-baseline gap-2">
+                            <!-- Title -->
+                            <span class="text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                                {{ .Title }}
+                            </span>
+
+                            <!-- Dots separator -->
+                            <span class="flex-1 overflow-hidden text-gray-300 dark:text-gray-600 leading-4" style="white-space: nowrap;" aria-hidden="true">
+                                . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                            </span>
+
+                            <!-- Date -->
+                            <time datetime="{{ .Date.Format "2006-01-02" }}"
+                                  class="text-sm text-gray-500 dark:text-gray-400 font-mono tabular-nums">
+                                {{ .Date.Format "Jan 02" }}
+                            </time>
+                        </a>
+
+                        <!-- Tags -->
+                        {{ if .Params.tags }}
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            {{ range first 3 .Params.tags }}
+                            <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag-badge">
+                                #{{ . }}
+                            </a>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                    </div>
+                </li>
+                {{ end }}
+            </ul>
+        </section>
+        {{ end }}
+    </div>
+
+    {{ else }}
+    <!-- No content -->
+    <div class="text-center py-16">
+        <p class="text-gray-600 dark:text-gray-400 italic">
+            No posts in this series yet.
+        </p>
+    </div>
+    {{ end }}
+
+    <!-- Back to all series -->
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <a href="{{ "/series/" | relURL }}"
+           class="inline-flex items-center gap-2 text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            View all series
+        </a>
+    </div>
+</div>
+{{ end }}

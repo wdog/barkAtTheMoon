@@ -1,0 +1,75 @@
+{{ define "main" }}
+<div class="max-w-3xl mx-auto">
+    <!-- Header -->
+    <header class="mb-16 border-b border-gray-300 dark:border-gray-700 pb-8">
+        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
+            All Series
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 italic">
+            {{ len .Data.Terms }} series · {{ len .Site.RegularPages }} posts
+        </p>
+    </header>
+
+    <!-- Series Cards -->
+    {{ if .Data.Terms }}
+    <div class="flex flex-wrap gap-3">
+        {{ range .Data.Terms.ByCount }}
+        <a href="{{ .Page.RelPermalink }}"
+           class="group inline-flex items-center gap-2 px-4 py-2 bg-cyan-50 dark:bg-cyan-900/20 hover:bg-cyan-100 dark:hover:bg-cyan-900/40 border border-cyan-200 dark:border-cyan-700 rounded-lg transition-colors">
+            <svg class="w-4 h-4 text-cyan-600 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            <span class="text-gray-900 dark:text-white group-hover:text-cyan-700 dark:group-hover:text-cyan-300 font-medium">
+                {{ .Page.Title }}
+            </span>
+            <span class="tag-count">
+                {{ .Count }}
+            </span>
+        </a>
+        {{ end }}
+    </div>
+
+    <!-- Alternative: List view -->
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <h2 class="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-6 font-medium">
+            Alphabetical
+        </h2>
+
+        <ul class="space-y-0 border-l-2 border-cyan-200 dark:border-cyan-700 pl-0">
+            {{ range .Data.Terms.Alphabetical }}
+            <li class="group">
+                <a href="{{ .Page.RelPermalink }}"
+                   class="flex items-baseline gap-2 py-3 pl-6 pr-2 -ml-0.5 border-l-2 border-transparent hover:border-cyan-500 dark:hover:border-cyan-400 transition-colors">
+                    <!-- Series icon and name -->
+                    <span class="inline-flex items-center gap-1.5 text-gray-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        {{ .Page.Title }}
+                    </span>
+
+                    <!-- Dots -->
+                    <span class="flex-1 overflow-hidden text-gray-300 dark:text-gray-600 leading-4" style="white-space: nowrap;" aria-hidden="true">
+                        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                    </span>
+
+                    <!-- Count -->
+                    <span class="text-sm text-gray-500 dark:text-gray-400 font-mono tabular-nums">
+                        {{ .Count }} {{ if eq .Count 1 }}post{{ else }}posts{{ end }}
+                    </span>
+                </a>
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+
+    {{ else }}
+    <!-- No series -->
+    <div class="text-center py-16">
+        <p class="text-gray-600 dark:text-gray-400 italic">
+            No series yet.
+        </p>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

@@ -12,7 +12,12 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold;
     letter-spacing: -0.02em;
     line-height: 1.3;
@@ -68,6 +73,18 @@
     border: none;
   }
 
+  .tag-serie {
+    @apply inline-block px-2 py-0.5 text-xs;
+    @apply bg-gray-100 dark:bg-primary-300;
+    @apply text-gray-600 dark:text-primary-900;
+    @apply rounded;
+    @apply hover:bg-primary-100 dark:hover:bg-primary-900;
+    @apply hover:text-primary-700 dark:hover:text-primary-300;
+    @apply transition-colors;
+    text-decoration: none !important;
+    border: none !important;
+  }
+
   /* Tag badge style */
   .tag-badge {
     @apply inline-block px-2 py-0.5 text-xs;
@@ -103,7 +120,8 @@
     @apply border-l-4 border-primary-500 pl-4 py-2 my-6 italic text-gray-700 dark:text-gray-300;
   }
 
-  ul, ol {
+  ul,
+  ol {
     @apply my-6 ml-6;
   }
 
@@ -269,8 +287,6 @@
     text-wrap: balance;
   }
 }
-
-
 
 img {
   @apply rounded-lg;
