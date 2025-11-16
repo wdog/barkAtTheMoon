@@ -73,18 +73,8 @@
     border: none;
   }
 
-  .tag-serie {
-    @apply inline-block px-2 py-0.5 text-xs;
-    @apply bg-gray-100 dark:bg-primary-300;
-    @apply text-gray-600 dark:text-primary-900;
-    @apply rounded;
-    @apply hover:bg-primary-100 dark:hover:bg-primary-900;
-    @apply hover:text-primary-700 dark:hover:text-primary-300;
-    @apply transition-colors;
-    text-decoration: none !important;
-    border: none !important;
-  }
-
+  /* Serie badge style */
+  .tag-serie,
   /* Tag badge style */
   .tag-badge {
     @apply inline-block px-2 py-0.5 text-xs;
@@ -96,6 +86,13 @@
     @apply transition-colors;
     text-decoration: none !important;
     border: none !important;
+  }
+
+  .tag-serie {
+    @apply dark:bg-purple-800;
+    @apply dark:text-purple-200;
+    @apply dark:hover:bg-purple-700;
+    @apply dark:hover:text-white;
   }
 
   /* Tag count badge (pill style) */
