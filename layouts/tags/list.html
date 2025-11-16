@@ -1,0 +1,106 @@
+{{ define "main" }}
+<div class="max-w-3xl mx-auto">
+    <!-- Header - Tag Info -->
+    <header class="mb-16 border-b border-gray-300 dark:border-gray-700 pb-8">
+        <!-- Tag Badge Large -->
+        <div class="mb-4">
+            <span class="inline-block px-4 py-2 text-sm font-medium bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-lg">
+                #{{ .Title }}
+            </span>
+        </div>
+
+        <!-- Count and Description -->
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
+            {{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }} tagged with "{{ .Title }}"
+        </h1>
+
+        {{ with .Description }}
+        <p class="text-lg text-gray-600 dark:text-gray-400 italic">
+            {{ . }}
+        </p>
+        {{ end }}
+    </header>
+
+    <!-- Posts grouped by year -->
+    {{ if .Pages }}
+    <div class="space-y-16">
+        {{ range .Pages.GroupByDate "2006" }}
+        <!-- Year -->
+        <section>
+            <h2 class="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-6 font-medium">
+                {{ .Key }}
+            </h2>
+
+            <!-- Posts list -->
+            <ul class="space-y-0 border-l-2 border-gray-200 dark:border-gray-700 pl-0">
+                {{ range .Pages }}
+                <li class="group">
+                    <div class="py-3 pl-6 pr-2 -ml-0.5 border-l-2 border-transparent hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
+                        <!-- Title and Date line -->
+                        <a href="{{ .RelPermalink }}"
+                           class="flex items-baseline gap-2">
+                            <!-- Title -->
+                            <span class="text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                {{ .Title }}
+                            </span>
+
+                            <!-- Dots separator -->
+                            <span class="flex-1 overflow-hidden text-gray-300 dark:text-gray-600 leading-4" style="white-space: nowrap;" aria-hidden="true">
+                                . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                            </span>
+
+                            <!-- Date -->
+                            <time datetime="{{ .Date.Format "2006-01-02" }}"
+                                  class="text-sm text-gray-500 dark:text-gray-400 font-mono tabular-nums">
+                                {{ .Date.Format "Jan 02" }}
+                            </time>
+                        </a>
+
+                        <!-- Other Tags (excluding current) -->
+                        {{ if .Params.tags }}
+                        {{ $currentTag := $.Title }}
+                        {{ $otherTags := slice }}
+                        {{ range .Params.tags }}
+                            {{ if ne . $currentTag }}
+                                {{ $otherTags = $otherTags | append . }}
+                            {{ end }}
+                        {{ end }}
+                        {{ if gt (len $otherTags) 0 }}
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            {{ range first 3 $otherTags }}
+                            <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag-badge">
+                                #{{ . }}
+                            </a>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                        {{ end }}
+                    </div>
+                </li>
+                {{ end }}
+            </ul>
+        </section>
+        {{ end }}
+    </div>
+
+    {{ else }}
+    <!-- No content -->
+    <div class="text-center py-16">
+        <p class="text-gray-600 dark:text-gray-400 italic">
+            No posts with this tag yet.
+        </p>
+    </div>
+    {{ end }}
+
+    <!-- Back to all tags -->
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <a href="{{ "/tags/" | relURL }}"
+           class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            View all tags
+        </a>
+    </div>
+</div>
+{{ end }}

@@ -1,0 +1,86 @@
+{{ define "main" }}
+<div class="max-w-3xl mx-auto">
+    <!-- Header -->
+    <header class="mb-16 border-b border-gray-300 dark:border-gray-700 pb-8">
+        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+            {{ .Title }}
+        </h1>
+        {{ with .Content }}
+        <div class="text-lg text-gray-600 dark:text-gray-400">
+            {{ . }}
+        </div>
+        {{ end }}
+    </header>
+
+    <!-- Links List from individual files -->
+    {{ if .Pages }}
+    <div class="space-y-0 border-l-2 border-gray-200 dark:border-gray-700 pl-0">
+        {{ range .Pages.ByDate.Reverse }}
+        <article class="group py-6 pl-6 pr-2 -ml-0.5 border-l-2 border-transparent hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
+            <div class="flex items-start gap-4">
+                <!-- External link icon -->
+                <div class="flex-shrink-0 mt-1">
+                    <svg class="w-5 h-5 text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                </div>
+
+                <div class="flex-1 min-w-0">
+                    <!-- Title, Date and URL -->
+                    <div class="flex items-baseline gap-2 mb-2">
+                        <h3 class="text-xl font-bold">
+                            {{ if .Params.link }}
+                            <a href="{{ .Params.link }}" target="_blank" rel="noopener"
+                               class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                {{ .Title }}
+                                <svg class="inline-block w-4 h-4 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                            {{ else }}
+                            <span class="text-gray-900 dark:text-white">{{ .Title }}</span>
+                            {{ end }}
+                        </h3>
+                        <!-- Date -->
+                        <time datetime="{{ .Date.Format "2006-01-02" }}" class="text-sm text-gray-500 dark:text-gray-400 font-mono tabular-nums whitespace-nowrap">
+                            {{ .Date.Format "Jan 02, 2006" }}
+                        </time>
+                    </div>
+
+                    <!-- Description from params or content -->
+                    {{ if .Params.description }}
+                    <p class="text-gray-600 dark:text-gray-400 mb-3 leading-relaxed">
+                        {{ .Params.description }}
+                    </p>
+                    {{ else if .Content }}
+                    <div class="text-gray-600 dark:text-gray-400 mb-3 leading-relaxed prose prose-sm dark:prose-invert">
+                        {{ .Content }}
+                    </div>
+                    {{ end }}
+
+                    <!-- Tags -->
+                    {{ if .Params.tags }}
+                    <div class="flex flex-wrap gap-2">
+                        {{ range .Params.tags }}
+                        <span class="inline-block px-2 py-0.5 text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">
+                            {{ . }}
+                        </span>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </article>
+        {{ end }}
+    </div>
+
+    {{ else }}
+    <!-- No links -->
+    <div class="text-center py-16">
+        <p class="text-gray-600 dark:text-gray-400 italic">
+            No links yet.
+        </p>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

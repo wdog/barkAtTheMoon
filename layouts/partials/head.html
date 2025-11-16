@@ -1,0 +1,46 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta name="author" content="{{ .Site.Params.brand }}">
+
+    {{ hugo.Generator }}
+
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- TailwindCSS via Hugo Pipes with PostCSS -->
+    {{ $css := resources.Get "css/main.css" }}
+    {{ $css = $css | css.PostCSS }}
+    {{ if hugo.IsProduction }}
+        {{ $css = $css | minify | fingerprint }}
+    {{ end }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+
+    <!-- Dark mode initialization script (prevents flash) -->
+    <script>
+        // Initialize dark mode before page render to prevent flash
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+
+    <!-- RSS -->
+    {{ with .OutputFormats.Get "RSS" }}
+        <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }}">
+    {{ end }}
+
+    <!-- Open Graph -->
+    {{ template "_internal/opengraph.html" . }}
+
+    <!-- Twitter Cards -->
+    {{ template "_internal/twitter_cards.html" . }}
+</head>

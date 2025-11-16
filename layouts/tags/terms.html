@@ -1,0 +1,69 @@
+{{ define "main" }}
+<div class="max-w-3xl mx-auto">
+    <!-- Header -->
+    <header class="mb-16 border-b border-gray-300 dark:border-gray-700 pb-8">
+        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
+            All Tags
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 italic">
+            {{ len .Data.Terms }} tags · {{ len .Site.RegularPages }} posts
+        </p>
+    </header>
+
+    <!-- Tags Cloud -->
+    {{ if .Data.Terms }}
+    <div class="flex flex-wrap gap-3">
+        {{ range .Data.Terms.ByCount }}
+        <a href="{{ .Page.RelPermalink }}"
+           class="group inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-primary-100 dark:hover:bg-primary-900 rounded-lg transition-colors">
+            <span class="text-gray-900 dark:text-white group-hover:text-primary-700 dark:group-hover:text-primary-300 font-medium">
+                #{{ .Page.Title }}
+            </span>
+            <span class="tag-count">
+                {{ .Count }}
+            </span>
+        </a>
+        {{ end }}
+    </div>
+
+    <!-- Alternative: List view -->
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <h2 class="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-6 font-medium">
+            Alphabetical
+        </h2>
+
+        <ul class="space-y-0 border-l-2 border-gray-200 dark:border-gray-700 pl-0">
+            {{ range .Data.Terms.Alphabetical }}
+            <li class="group">
+                <a href="{{ .Page.RelPermalink }}"
+                   class="flex items-baseline gap-2 py-3 pl-6 pr-2 -ml-0.5 border-l-2 border-transparent hover:border-primary-500 dark:hover:border-primary-400 transition-colors">
+                    <!-- Tag name -->
+                    <span class="text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                        #{{ .Page.Title }}
+                    </span>
+
+                    <!-- Dots -->
+                    <span class="flex-1 overflow-hidden text-gray-300 dark:text-gray-600 leading-4" style="white-space: nowrap;" aria-hidden="true">
+                        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+                    </span>
+
+                    <!-- Count -->
+                    <span class="text-sm text-gray-500 dark:text-gray-400 font-mono tabular-nums">
+                        {{ .Count }} {{ if eq .Count 1 }}post{{ else }}posts{{ end }}
+                    </span>
+                </a>
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+
+    {{ else }}
+    <!-- No tags -->
+    <div class="text-center py-16">
+        <p class="text-gray-600 dark:text-gray-400 italic">
+            No tags yet.
+        </p>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

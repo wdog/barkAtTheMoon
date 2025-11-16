@@ -1,0 +1,145 @@
+{{ define "main" }}
+<div class="max-w-4xl mx-auto">
+    <!-- List Header -->
+    <header class="mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {{ .Title }}
+        </h1>
+        {{ with .Description }}
+        <p class="text-xl text-gray-600 dark:text-gray-400">
+            {{ . }}
+        </p>
+        {{ end }}
+    </header>
+
+    <!-- List Content -->
+    {{ if .Content }}
+    <div class="prose prose-lg dark:prose-invert mb-12">
+        {{ .Content }}
+    </div>
+    {{ end }}
+
+    <!-- Posts/Pages List -->
+    {{ $paginator := .Paginate .Pages }}
+    {{ if gt (len $paginator.Pages) 0 }}
+    <div class="space-y-8">
+        {{ range $paginator.Pages }}
+        <article class="card hover:shadow-lg transition-shadow duration-200">
+            <div class="flex flex-col md:flex-row md:items-start gap-4">
+                <!-- Date Badge (if available) -->
+                {{ if .Date }}
+                <div class="flex-shrink-0">
+                    <div class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 rounded-lg p-3 text-center min-w-[80px]">
+                        <div class="text-2xl font-bold">{{ .Date.Format "02" }}</div>
+                        <div class="text-xs uppercase">{{ .Date.Format "Jan" }}</div>
+                        <div class="text-xs">{{ .Date.Format "2006" }}</div>
+                    </div>
+                </div>
+                {{ end }}
+
+                <!-- Content -->
+                <div class="flex-1 min-w-0">
+                    <h2 class="text-2xl font-bold mb-2">
+                        <a href="{{ .RelPermalink }}"
+                            class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            {{ .Title }}
+                        </a>
+                    </h2>
+
+                    <!-- Meta Info -->
+                    <div class="flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-400 mb-3">
+                        {{ if .ReadingTime }}
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            {{ .ReadingTime }} min
+                        </span>
+                        {{ end }}
+
+                        {{ if .Params.author }}
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            {{ .Params.author }}
+                        </span>
+                        {{ end }}
+                    </div>
+
+                    <!-- Summary -->
+                    {{ with .Summary }}
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        {{ . }}
+                    </p>
+                    {{ end }}
+
+                    <!-- Tags -->
+                    {{ if .Params.tags }}
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        {{ range first 3 .Params.tags }}
+                        <span class="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
+                            #{{ . }}
+                        </span>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+
+                    <!-- Read More Link -->
+                    <a href="{{ .RelPermalink }}"
+                        class="inline-flex items-center gap-1 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors">
+                        Read more
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </article>
+        {{ end }}
+    </div>
+
+    <!-- Pagination -->
+    {{ if gt $paginator.TotalPages 1 }}
+    <nav class="mt-12 flex justify-center">
+        <ul class="flex items-center gap-2">
+            {{ if $paginator.HasPrev }}
+            <li>
+                <a href="{{ $paginator.Prev.URL }}"
+                    class="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                    Previous
+                </a>
+            </li>
+            {{ end }}
+
+            {{ range $paginator.Pagers }}
+            <li>
+                <a href="{{ .URL }}"
+                    class="px-4 py-2 rounded-lg {{ if eq . $paginator }}bg-primary-600 text-white{{ else }}bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700{{ end }} transition-colors">
+                    {{ .PageNumber }}
+                </a>
+            </li>
+            {{ end }}
+
+            {{ if $paginator.HasNext }}
+            <li>
+                <a href="{{ $paginator.Next.URL }}"
+                    class="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                    Next
+                </a>
+            </li>
+            {{ end }}
+        </ul>
+    </nav>
+    {{ end }}
+
+    {{ else }}
+    <!-- No content message -->
+    <div class="text-center py-12">
+        <p class="text-xl text-gray-600 dark:text-gray-400">
+            No content found yet. Check back soon!
+        </p>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

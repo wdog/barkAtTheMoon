@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  body {
+    @apply font-sans text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl;
+    @apply text-primary-700 dark:text-primary-400;
+    @apply mt-8 mb-6;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+    @apply text-primary-600 dark:text-primary-400;
+    @apply mt-12 mb-4;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+    @apply text-primary-500 dark:text-primary-400;
+    @apply mt-8 mb-3;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+    @apply text-primary-400 dark:text-primary-300;
+    @apply mt-6 mb-2;
+  }
+
+  h5 {
+    @apply text-lg md:text-xl;
+    @apply text-gray-700 dark:text-gray-300;
+    @apply mt-4 mb-2;
+  }
+
+  h6 {
+    @apply text-base md:text-lg;
+    @apply text-gray-600 dark:text-gray-400;
+    @apply mt-3 mb-2;
+  }
+
+  p {
+    @apply leading-relaxed;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  a {
+    @apply text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors;
+    /* text-decoration-thickness: 1px; */
+    /* text-underline-offset: 2px; */
+    border: none;
+  }
+
+  /* Tag badge style */
+  .tag-badge {
+    @apply inline-block px-2 py-0.5 text-xs;
+    @apply bg-gray-100 dark:bg-primary-900;
+    @apply text-gray-600 dark:text-primary-300;
+    @apply rounded;
+    @apply hover:bg-primary-100 dark:hover:bg-primary-300;
+    @apply hover:text-primary-700 dark:hover:text-primary-900;
+    @apply transition-colors;
+    text-decoration: none !important;
+    border: none !important;
+  }
+
+  /* Tag count badge (pill style) */
+  .tag-count {
+    @apply inline-flex items-center justify-center;
+    @apply min-w-[1.5rem] h-5 px-1.5;
+    @apply text-xs font-semibold;
+    @apply bg-gray-200 dark:bg-primary-700;
+    @apply text-gray-700 dark:text-primary-300;
+    @apply rounded-full;
+  }
+
+  strong {
+    @apply font-semibold text-gray-900 dark:text-white;
+  }
+
+  em {
+    @apply italic;
+  }
+
+  blockquote {
+    @apply border-l-4 border-primary-500 pl-4 py-2 my-6 italic text-gray-700 dark:text-gray-300;
+  }
+
+  ul, ol {
+    @apply my-6 ml-6;
+  }
+
+  li {
+    @apply mb-2 leading-relaxed;
+  }
+
+  hr {
+    @apply my-8 border-gray-200 dark:border-gray-700;
+  }
+}
+
+/* Custom components */
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600;
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700;
+  }
+
+  /* Navigation link styles */
+  .nav-link {
+    @apply text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors;
+  }
+
+  .nav-link-active {
+    @apply text-primary-600 dark:text-primary-400 font-semibold;
+  }
+
+  /* Sidebar styles - Fixed position */
+  .sidebar {
+    @apply bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700;
+    @apply p-6;
+    flex-shrink: 0;
+
+    /* Mobile: full width, hidden by default, slides in from left */
+    position: fixed;
+    top: 56px; /* Start below mobile bar */
+    left: -100%;
+    bottom: 0;
+    width: 100%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(156, 163, 175) transparent;
+    z-index: 45; /* Below mobile bar (40) but above overlay (40) */
+    transition: left 0.3s ease-in-out;
+  }
+
+  .sidebar.mobile-open {
+    left: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .sidebar {
+      top: 0; /* Full height on desktop */
+      left: 0;
+      width: 18rem; /* Fixed width on desktop */
+      z-index: auto;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background-color: rgb(156, 163, 175);
+      border-radius: 3px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover {
+      background-color: rgb(107, 114, 128);
+    }
+  }
+
+  .sidebar-sticky {
+    @apply sticky top-4;
+    width: 16rem;
+  }
+
+  /* Code blocks */
+  pre {
+    @apply bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto;
+    @apply border border-gray-200 dark:border-gray-700;
+    @apply my-6;
+    line-height: 1.6;
+  }
+
+  code {
+    @apply font-mono text-sm bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded;
+    @apply text-gray-800 dark:text-gray-200;
+    font-size: 0.9em;
+  }
+
+  pre code {
+    @apply bg-transparent p-0;
+    font-size: 0.875rem;
+  }
+
+  /* Article/Content prose improvements */
+  article.prose {
+    @apply text-gray-700 dark:text-gray-300;
+  }
+
+  /* Improved link styling in prose */
+  article.prose a {
+    @apply font-medium underline decoration-primary-400 dark:decoration-primary-500;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  article.prose a:hover {
+    @apply decoration-primary-600 dark:decoration-primary-400;
+  }
+
+  /* Lists in prose */
+  article.prose ul {
+    list-style-type: disc;
+  }
+
+  article.prose ol {
+    list-style-type: decimal;
+  }
+
+  article.prose li::marker {
+    @apply text-primary-500;
+  }
+
+  /* Tables */
+  article.prose table {
+    @apply w-full my-6 border-collapse;
+  }
+
+  article.prose th {
+    @apply bg-gray-100 dark:bg-gray-800 font-semibold text-left p-3 border-b-2 border-gray-300 dark:border-gray-600;
+  }
+
+  article.prose td {
+    @apply p-3 border-b border-gray-200 dark:border-gray-700;
+  }
+
+  article.prose tr:hover {
+    @apply bg-gray-50 dark:bg-gray-800/50;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
+
+img {
+  @apply rounded-lg;
+}
