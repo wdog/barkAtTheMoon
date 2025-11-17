@@ -20,9 +20,29 @@ Make sure you have:
 
 ### Quick Start
 
+**IMPORTANT: Install npm dependencies in your blog's root directory, NOT in the theme directory.**
+
 ```bash
-# Install dependencies
-npm install
+# Navigate to your blog root (where hugo.toml is located)
+cd /path/to/your/blog
+
+# Install dependencies in the blog root
+# IMPORTANT: Use TailwindCSS v3.x (NOT v4) - the theme is built for v3
+npm install --save-dev tailwindcss@^3
+npm install --save-dev postcss postcss-cli autoprefixer
+
+# Copy required config files to blog root (if not already present)
+cp themes/barkAtTheMoon/tailwind.config.js .
+
+# Create postcss.config.js in blog root
+cat > postcss.config.js << 'EOF'
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+EOF
 
 # Start development server
 hugo server -D
@@ -32,6 +52,26 @@ hugo --minify
 ```
 
 Your site will be available at `http://localhost:1313/`
+
+#### Why Install npm in Blog Root?
+
+**✓ Install Here:** `/your-blog/` (where `hugo.toml` lives)
+```
+your-blog/
+├── node_modules/        ← npm packages go here
+├── package.json         ← npm config goes here
+├── hugo.toml
+├── content/
+└── themes/
+    └── barkAtTheMoon/   ← DON'T install npm here
+```
+
+**Reasons:**
+1. **Theme is a git submodule** - Installing npm in the theme complicates updates and version control
+2. **Tailwind config references blog root** - The `tailwind.config.js` paths start from `./`, meaning your blog's root directory
+3. **Better control** - You can update TailwindCSS versions independently from the theme
+4. **Standard Hugo practice** - Most Hugo themes expect dependencies at the project root
+5. **Easier deployment** - Build systems expect `node_modules/` and `package.json` at the project root
 
 ## Configuration
 

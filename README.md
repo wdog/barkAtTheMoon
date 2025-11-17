@@ -18,8 +18,6 @@ A modern, minimal Hugo theme built with TailwindCSS.
 
 ## Installation
 
-The theme is already installed in the `themes/barkAtTheMoon` directory.
-
 ### Prerequisites
 
 - Hugo v0.112.0 or higher (extended version)
@@ -27,24 +25,78 @@ The theme is already installed in the `themes/barkAtTheMoon` directory.
 
 ### Setup
 
-1. Install npm dependencies (already done):
+**IMPORTANT: Install npm dependencies in your blog's root directory (where `hugo.toml` is), NOT in the theme directory.**
+
+1. **Add the theme to your Hugo site:**
+
    ```bash
-   npm install
+   # From your blog root
+   git submodule add https://github.com/yourusername/barkAtTheMoon themes/barkAtTheMoon
    ```
 
-2. Switch to the theme in `hugo.toml`:
+2. **Configure the theme in `hugo.toml`:**
+
    ```toml
    theme = 'barkAtTheMoon'
    ```
 
-3. Build the site:
+3. **Install npm dependencies in your blog root:**
+
    ```bash
-   hugo
+   # Make sure you're in your blog's root directory (where hugo.toml is)
+   # IMPORTANT: Use TailwindCSS v3.x (NOT v4) - the theme is built for v3
+   npm install --save-dev tailwindcss@^3
+   npm install --save-dev postcss postcss-cli autoprefixer
    ```
 
-4. Or run the development server:
+   **Why blog root?**
+   - The theme is a git submodule - installing npm in it complicates updates
+   - `tailwind.config.js` paths reference blog root (`./themes/...`, `./layouts/...`)
+   - Standard Hugo practice - dependencies belong at project root
+   - Easier deployment and build configuration
+
+   **Directory structure:**
+   ```
+   your-blog/
+   ├── node_modules/      ← npm packages here
+   ├── package.json       ← npm config here
+   ├── hugo.toml
+   ├── content/
+   └── themes/
+       └── barkAtTheMoon/ ← NO npm here
+   ```
+
+4. **Copy the Tailwind config to your blog root:**
+
+   ```bash
+   cp themes/barkAtTheMoon/tailwind.config.js .
+   ```
+
+5. **Create `postcss.config.js` in your blog root:**
+
+   ```bash
+   cat > postcss.config.js << 'EOF'
+   module.exports = {
+     plugins: {
+       tailwindcss: {},
+       autoprefixer: {},
+     },
+   }
+   EOF
+   ```
+
+   Or create it manually with the content above.
+
+6. **Run the development server:**
+
    ```bash
    hugo server -D
+   ```
+
+7. **Or build for production:**
+
+   ```bash
+   hugo --minify
    ```
 
 ## ⚙️ Configuration
