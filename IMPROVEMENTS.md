@@ -1,90 +1,10 @@
-# Suggerimenti di Miglioramento per barkAtTheMoon
+# Miglioramenti Suggeriti per barkAtTheMoon
 
-Basato sull'analisi del tema Poison e best practices Hugo.
+Feature da implementare per rendere il tema ancora più completo.
 
-## ✅ Già Implementato
+## 🎯 Suggerimenti
 
-- ✅ TailwindCSS con dark mode
-- ✅ Sidebar fixed/mobile drawer
-- ✅ Dark mode toggle con localStorage
-- ✅ Lista post con paginazione
-- ✅ Template single con metadata
-- ✅ Mobile responsive
-- ✅ Social links
-- ✅ About page layout
-
-## 🎯 Miglioramenti Suggeriti
-
-### 1. **Serie di Post (Post Series)**
-
-**Cosa aggiungere:**
-- Supporto per raggruppare post correlati in serie
-- Navigation tra post della stessa serie
-- Indice della serie visibile nei post
-
-**Implementazione:**
-```yaml
-# In frontmatter
-series: "Hugo Tutorial"
-```
-
-**File da creare:**
-- `layouts/partials/post-series.html` - Mostra tutti i post della serie
-- `layouts/series/list.html` - Pagina indice delle serie
-
-**Benefici:**
-- Organizza tutorial multi-parte
-- Migliora navigazione tra contenuti correlati
-
----
-
-### 2. **Table of Contents (TOC)**
-
-**Cosa aggiungere:**
-- TOC automatico per post lunghi
-- Sticky sidebar con TOC su desktop
-- Opzione per nascondere TOC per post
-
-**Implementazione:**
-```go
-{{ if and .Params.toc (gt .WordCount 400) }}
-  {{ .TableOfContents }}
-{{ end }}
-```
-
-**File da creare:**
-- `layouts/partials/toc.html`
-
-**Benefici:**
-- Migliora navigazione in articoli lunghi
-- SEO-friendly
-
----
-
-### 3. **Configurazione Colori Personalizzabile**
-
-**Cosa aggiungere:**
-- Parametri Hugo per colori custom
-- Sistema CSS variables più flessibile
-
-**Esempio configurazione:**
-```toml
-[params.colors]
-  primary = "#0ea5e9"
-  accent = "#3b82f6"
-  # etc...
-```
-
-**File da modificare:**
-- `layouts/partials/head.html` - Inject CSS variables
-
-**Benefici:**
-- Personalizzazione senza modificare CSS
-- Rebrand facile
-
----
-
-### 4. **RSS Feed Migliorato**
+### 1. **RSS Feed Migliorato**
 
 **Cosa aggiungere:**
 - Icona RSS in sidebar
@@ -104,7 +24,7 @@ series: "Hugo Tutorial"
 
 ---
 
-### 5. **Search Functionality**
+### 2. **Search Functionality**
 
 **Cosa aggiungere:**
 - Client-side search con Fuse.js o Lunr.js
@@ -122,7 +42,7 @@ series: "Hugo Tutorial"
 
 ---
 
-### 6. **Shortcodes Utili**
+### 3. **Shortcodes Utili**
 
 **Cosa aggiungere:**
 - `{{< tabs >}}` - Contenuto a tab
@@ -142,7 +62,7 @@ series: "Hugo Tutorial"
 
 ---
 
-### 7. **Related Posts**
+### 4. **Related Posts**
 
 **Cosa aggiungere:**
 - Sezione "Related Posts" alla fine degli articoli
@@ -163,7 +83,7 @@ series: "Hugo Tutorial"
 
 ---
 
-### 8. **Breadcrumbs**
+### 5. **Breadcrumbs**
 
 **Cosa aggiungere:**
 - Breadcrumb navigation
@@ -178,7 +98,7 @@ series: "Hugo Tutorial"
 
 ---
 
-### 9. **Image Optimization**
+### 6. **Image Optimization**
 
 **Cosa aggiungere:**
 - Hugo Image Processing per thumbnail
@@ -198,7 +118,7 @@ series: "Hugo Tutorial"
 
 ---
 
-### 10. **Analytics Privacy-First**
+### 7. **Analytics Privacy-First**
 
 **Cosa aggiungere:**
 - Supporto Plausible Analytics
@@ -223,7 +143,7 @@ series: "Hugo Tutorial"
 
 ---
 
-### 11. **Open Graph & Twitter Cards**
+### 8. **Open Graph & Twitter Cards**
 
 **Cosa aggiungere:**
 - Meta tags OG automatici
@@ -240,7 +160,7 @@ series: "Hugo Tutorial"
 
 ---
 
-### 12. **Multiple Authors Support**
+### 9. **Multiple Authors Support**
 
 **Cosa aggiungere:**
 - Taxonomy "authors"
@@ -257,7 +177,7 @@ series: "Hugo Tutorial"
 
 ---
 
-### 13. **Archive Page**
+### 10. **Archive Page**
 
 **Cosa aggiungere:**
 - Pagina archivio completo
@@ -274,7 +194,7 @@ series: "Hugo Tutorial"
 
 ---
 
-### 14. **Print Stylesheet**
+### 11. **Print Stylesheet**
 
 **Cosa aggiungere:**
 - CSS ottimizzato per stampa
@@ -295,7 +215,7 @@ series: "Hugo Tutorial"
 
 ---
 
-### 15. **Syntax Highlighting Theme Switcher**
+### 12. **Syntax Highlighting Theme Switcher**
 
 **Cosa aggiungere:**
 - Tema syntax highlighting che cambia con dark mode
@@ -320,18 +240,16 @@ Già supportato da Hugo con `markup.highlight.noClasses = false`
 5. SEO improvements
 
 ### Media Priorità
-6. Table of Contents
-7. Post Series
-8. Search functionality
-9. Shortcodes (alert, tabs)
+4. Search functionality
+5. Shortcodes (alert, tabs)
+6. Image optimization
 
 ### Bassa Priorità (Nice to Have)
-10. Multiple authors
-11. Analytics
-12. Archive page
-13. Print stylesheet
-14. Color customization
-15. Image optimization
+7. Multiple authors
+8. Analytics
+9. Archive page
+10. Print stylesheet
+11. Syntax highlighting theme switcher
 
 ---
 
