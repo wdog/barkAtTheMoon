@@ -2,6 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== CSS Variables for Easy Theming ===== */
+/* These variables reference Tailwind colors and auto-update when you change tailwind.config.js */
+
+@layer base {
+  :root {
+    /* Sidebar Colors - Change these in tailwind.config.js */
+    --sidebar-bg: theme("colors.primary.900");
+    --sidebar-bg-dark: theme("colors.gray.800");
+    --sidebar-border: theme("colors.gray.900");
+    --sidebar-border-dark: theme("colors.gray.700");
+
+    --sidebar-title: theme("colors.primary.200");
+    --sidebar-title-dark: theme("colors.primary.500");
+    --sidebar-title-hover: theme("colors.primary.400");
+    --sidebar-title-hover-dark: theme("colors.primary.400");
+    --sidebar-description: theme("colors.gray.100");
+    --sidebar-description-dark: theme("colors.gray.400");
+
+    --sidebar-link: theme("colors.gray.200");
+    --sidebar-link-dark: theme("colors.gray.300");
+    --sidebar-link-hover: theme("colors.white");
+    --sidebar-link-hover-dark: theme("colors.white");
+    --sidebar-link-hover-bg: theme("colors.primary.800");
+    --sidebar-link-hover-bg-dark: theme("colors.gray.700");
+    --sidebar-link-active: theme("colors.primary.200");
+    --sidebar-link-active-dark: theme("colors.primary.300");
+    --sidebar-link-active-bg: theme("colors.gray.800");
+    --sidebar-link-active-bg-dark: theme("colors.primary.900");
+
+    --sidebar-icon: theme("colors.primary.500");
+    --sidebar-icon-dark: theme("colors.gray.400");
+    --sidebar-icon-hover: theme("colors.white");
+    --sidebar-icon-hover-dark: theme("colors.white");
+
+    --sidebar-divider: theme("colors.gray.400");
+    --sidebar-divider-dark: theme("colors.gray.700");
+
+    --sidebar-credit: theme("colors.gray.100");
+    --sidebar-credit-dark: theme("colors.gray.500");
+    --sidebar-credit-link-hover: theme("colors.primary.200");
+    --sidebar-credit-link-hover-dark: theme("colors.primary.400");
+
+    /* Main Content Colors */
+    --content-bg: theme("colors.white");
+    --content-bg-dark: theme("colors.gray.900");
+
+    /* Badge Colors */
+    --badge-bg: theme("colors.primary.100");
+    --badge-text: theme("colors.primary.700");
+    --badge-hover-bg: theme("colors.primary.200");
+    --badge-hover-text: theme("colors.primary.800");
+
+    --badge-serie-bg: theme("colors.purple.100");
+    --badge-serie-text: theme("colors.purple.700");
+    --badge-serie-hover-bg: theme("colors.purple.200");
+    --badge-serie-hover-text: theme("colors.purple.800");
+
+    /* Link Colors */
+    --link-color: theme("colors.primary.600");
+    --link-hover: theme("colors.primary.700");
+  }
+}
+
 /* Custom base styles */
 @layer base {
   body {
@@ -78,21 +141,25 @@
   /* Tag badge style */
   .tag-badge {
     @apply inline-block px-2 py-0.5 text-xs;
-    @apply bg-gray-100 dark:bg-primary-900;
-    @apply text-gray-600 dark:text-primary-300;
+    @apply bg-primary-100 dark:bg-primary-900;
+    @apply text-primary-700 dark:text-primary-300;
     @apply rounded;
-    @apply hover:bg-primary-100 dark:hover:bg-primary-300;
-    @apply hover:text-primary-700 dark:hover:text-primary-900;
+    @apply hover:bg-primary-200 dark:hover:bg-primary-300;
+    @apply hover:text-primary-800 dark:hover:text-primary-900;
     @apply transition-colors;
+    @apply transition-all duration-200 transform hover:shadow-md ;
+
+
+
     text-decoration: none !important;
     border: none !important;
   }
 
   .tag-serie {
-    @apply dark:bg-purple-800;
-    @apply dark:text-purple-200;
-    @apply dark:hover:bg-purple-700;
-    @apply dark:hover:text-white;
+    @apply bg-purple-100 dark:bg-purple-800;
+    @apply text-purple-700 dark:text-purple-200;
+    @apply hover:bg-purple-200 dark:hover:bg-purple-700;
+    @apply hover:text-purple-800 dark:hover:text-white;
   }
 
   /* Tag count badge (pill style) */
@@ -100,8 +167,8 @@
     @apply inline-flex items-center justify-center;
     @apply min-w-[1.5rem] h-5 px-1.5;
     @apply text-xs font-semibold;
-    @apply bg-gray-200 dark:bg-primary-700;
-    @apply text-gray-700 dark:text-primary-300;
+    @apply bg-primary-200 dark:bg-primary-700;
+    @apply text-primary-800 dark:text-primary-300;
     @apply rounded-full;
   }
 
@@ -146,22 +213,147 @@
   }
 
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700;
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-300 dark:border-gray-700;
+  }
+
+  /* ===== Semantic Helper Classes ===== */
+
+  /* Sidebar Component Classes */
+  .sidebar-title {
+    color: var(--sidebar-title);
+    @apply text-xl font-bold text-center mb-2 transition-colors block;
+  }
+
+  .dark .sidebar-title {
+    color: var(--sidebar-title-dark);
+  }
+
+  .sidebar-title:hover {
+    color: var(--sidebar-title-hover);
+  }
+
+  .dark .sidebar-title:hover {
+    color: var(--sidebar-title-hover-dark);
+  }
+
+  .sidebar-description {
+    color: var(--sidebar-description);
+    @apply text-center text-sm;
+  }
+
+  .dark .sidebar-description {
+    color: var(--sidebar-description-dark);
+  }
+
+  .sidebar-link {
+    color: var(--sidebar-link);
+    @apply block py-2 px-4 rounded-lg transition-colors;
+  }
+
+  .dark .sidebar-link {
+    color: var(--sidebar-link-dark);
+  }
+
+  .sidebar-link:hover {
+    color: var(--sidebar-link-hover);
+    background-color: var(--sidebar-link-hover-bg);
+  }
+
+  .dark .sidebar-link:hover {
+    color: var(--sidebar-link-hover-dark);
+    background-color: var(--sidebar-link-hover-bg-dark);
+  }
+
+  .sidebar-link.active {
+    color: var(--sidebar-link-active);
+    background-color: var(--sidebar-link-active-bg);
+    @apply font-semibold;
+  }
+
+  .dark .sidebar-link.active {
+    color: var(--sidebar-link-active-dark);
+    background-color: var(--sidebar-link-active-bg-dark);
+  }
+
+  .sidebar-icon {
+    color: var(--sidebar-icon);
+    @apply transition-colors;
+  }
+
+  .dark .sidebar-icon {
+    color: var(--sidebar-icon-dark);
+  }
+
+  .sidebar-icon:hover {
+    color: var(--sidebar-icon-hover);
+  }
+
+  .dark .sidebar-icon:hover {
+    color: var(--sidebar-icon-hover-dark);
+  }
+
+  .sidebar-divider {
+    border-color: var(--sidebar-divider);
+    @apply border-t pt-6;
+  }
+
+  .dark .sidebar-divider {
+    border-color: var(--sidebar-divider-dark);
+  }
+
+  .sidebar-text {
+    color: var(--sidebar-description);
+    @apply text-sm;
+  }
+
+  .dark .sidebar-text {
+    color: var(--sidebar-description-dark);
+  }
+
+  .sidebar-heading {
+    color: var(--sidebar-title);
+    @apply text-sm font-semibold mb-3 uppercase tracking-wide;
+  }
+
+  .dark .sidebar-heading {
+    color: var(--sidebar-title-dark);
+  }
+
+  .sidebar-credit {
+    color: var(--sidebar-credit);
+    @apply text-xs text-center;
+  }
+
+  .dark .sidebar-credit {
+    color: var(--sidebar-credit-dark);
+  }
+
+  .sidebar-credit-link {
+    @apply transition-colors;
+  }
+
+  .sidebar-credit-link:hover {
+    color: var(--sidebar-credit-link-hover);
+  }
+
+  .dark .sidebar-credit-link:hover {
+    color: var(--sidebar-credit-link-hover-dark);
   }
 
   /* Navigation link styles */
   .nav-link {
-    @apply text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors;
+    @apply text-gray-300 hover:text-primary-400 transition-colors;
   }
 
   .nav-link-active {
-    @apply text-primary-600 dark:text-primary-400 font-semibold;
+    @apply text-primary-400 font-semibold;
   }
 
   /* Sidebar styles - Fixed position */
   .sidebar {
-    @apply bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700;
-    @apply p-6;
+    background-color: var(--sidebar-bg);
+    border-right-color: var(--sidebar-border);
+    @apply border-r p-6;
     flex-shrink: 0;
 
     /* Mobile: full width, hidden by default, slides in from left */
@@ -179,6 +371,12 @@
 
   .sidebar.mobile-open {
     left: 0;
+  }
+
+  /* Dark mode sidebar colors */
+  .dark .sidebar {
+    background-color: var(--sidebar-bg-dark);
+    border-right-color: var(--sidebar-border-dark);
   }
 
   @media (min-width: 1024px) {

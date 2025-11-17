@@ -7,17 +7,16 @@
             {{ if .Site.Params.brand_image }}
             <a href="/" class="block">
                 <img src="{{ .Site.Params.brand_image }}" alt="{{ .Site.Params.brand }}"
-                    class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white dark:border-gray-700 shadow-lg hover:border-primary-500 dark:hover:border-primary-500 transition-colors cursor-pointer">
+                    class="w-24 h-24 mx-auto mb-4 transition-colors border-4 border-white rounded-full shadow-lg cursor-pointer dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500">
             </a>
             {{ end }}
-            <h2 class="text-xl font-bold text-center mb-2">
-                <a href="/"
-                    class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            <h2>
+                <a href="/" class="sidebar-title">
                     {{ .Site.Params.brand | default .Site.Title }}
                 </a>
             </h2>
             {{ if .Site.Params.description }}
-            <p class="text-center text-gray-600 dark:text-gray-400 text-sm">
+            <p class="sidebar-description">
                 {{ .Site.Params.description }}
             </p>
             {{ end }}
@@ -28,11 +27,10 @@
             <ul class="space-y-2">
                 {{ range .Site.Params.menu }}
                 <li>
-                    <a href="{{ .URL }}"
-                        class="block py-2 px-4 rounded-lg transition-colors {{ if eq $.RelPermalink .URL }}bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 font-semibold{{ else }}text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700{{ end }}">
+                    <a href="{{ .URL }}" class="sidebar-link {{ if eq $.RelPermalink .URL }}active{{ end }}">
                         {{ .Name }}
                         {{ if .Pre }}
-                        <span class="text-xs text-gray-500 dark:text-gray-400"> ({{ .Pre }})</span>
+                        <span class="text-xs"> ({{ .Pre }})</span>
                         {{ end }}
                     </a>
                 </li>
@@ -44,11 +42,11 @@
 
         <!-- Social Links -->
         {{ if or .Site.Params.github_url .Site.Params.linkedin_url .Site.Params.email_url }}
-        <div class="border-t border-gray-200 dark:border-gray-700 pt-6 mb-8">
+        <div class="mb-8 sidebar-divider">
             <div class="flex justify-center space-x-4">
                 {{ if .Site.Params.github_url }}
                 <a href="{{ .Site.Params.github_url }}" target="_blank" rel="noopener"
-                    class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    class="sidebar-icon"
                     aria-label="GitHub">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                         <path
@@ -58,7 +56,7 @@
                 {{ end }}
                 {{ if .Site.Params.linkedin_url }}
                 <a href="{{ .Site.Params.linkedin_url }}" target="_blank" rel="noopener"
-                    class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    class="sidebar-icon"
                     aria-label="LinkedIn">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                         <path
@@ -68,7 +66,7 @@
                 {{ end }}
                 {{ if .Site.Params.email_url }}
                 <a href="{{ .Site.Params.email_url }}"
-                    class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    class="sidebar-icon"
                     aria-label="Email">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
@@ -83,11 +81,11 @@
 
         <!-- Additional Sidebar Content -->
         {{ if .Site.Params.sidebar_about }}
-        <div class="border-t border-gray-200 dark:border-gray-700 pt-6 mb-8">
-            <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-3 uppercase tracking-wide">
+        <div class="mb-8 sidebar-divider">
+            <h3 class="sidebar-heading">
                 About
             </h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400">
+            <p class="sidebar-text">
                 {{ .Site.Params.sidebar_about }}
             </p>
         </div>
@@ -99,11 +97,11 @@
         <!-- Dark Mode Toggle -->
         <div class="flex justify-center mb-2">
             <button id="theme-toggle" type="button"
-                class="relative inline-flex items-center h-10 rounded-full w-20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+                class="relative inline-flex items-center w-20 h-10 transition-all duration-300 bg-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
                 aria-label="Toggle dark mode">
                 <!-- Toggle Circle -->
                 <span id="toggle-circle"
-                    class="flex items-center justify-center absolute left-1 h-8 w-8 transform rounded-full bg-white dark:bg-gray-900 shadow-lg transition-transform duration-300 ease-in-out translate-x-0 dark:translate-x-10">
+                    class="absolute flex items-center justify-center w-8 h-8 transition-transform duration-300 ease-in-out transform translate-x-0 bg-white rounded-full shadow-lg left-1 dark:bg-gray-900 dark:translate-x-10">
                     <!-- Sun icon (shown in light mode) -->
                     <svg id="theme-toggle-light-icon" class="w-5 h-5 text-yellow-500" fill="currentColor"
                         viewBox="0 0 20 20">
@@ -122,14 +120,14 @@
 
         <!-- Theme Credit -->
         {{ if .Site.Params.show_theme_credit }}
-        <div class="pt-6 border-t border-gray-200 dark:border-gray-700">
-            <p class="text-xs text-gray-500 dark:text-gray-500 text-center">
+        <div class="sidebar-divider">
+            <p class="sidebar-credit">
                 Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener"
-                    class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Hugo</a>
+                    class="sidebar-credit-link">Hugo</a>
             </p>
-            <p class="text-xs text-gray-500 dark:text-gray-500 text-center mt-1">
+            <p class="sidebar-credit mt-1">
                 Theme: <a href="https://github.com/wdog/barkAtTheMoon" target="_blank" rel="noopener"
-                    class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">barkAtTheMoon</a>
+                    class="sidebar-credit-link">barkAtTheMoon</a>
             </p>
         </div>
         {{ end }}
