@@ -420,7 +420,7 @@ primary: { 500: '#f59e0b' }  // Amber accents
 | `--sidebar-description` | Description text |
 | `--sidebar-icon` | Social icons |
 | `--sidebar-divider` | Divider lines |
-| `--sidebar-credit` | Footer credits |
+| `--sidebar-credit` | Credits text |
 | `--badge-bg` | Tag background |
 | `--badge-text` | Tag text |
 | `--badge-serie-bg` | Series badge background |

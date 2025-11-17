@@ -1,0 +1,205 @@
+# ===================================================================
+# Hugo Configuration File - barkAtTheMoon Theme
+# ===================================================================
+# This is a comprehensive example configuration for the barkAtTheMoon theme.
+# Copy this file to your site root as hugo.toml and customize it.
+#
+# Documentation: https://github.com/wdog/barkAtTheMoon
+# ===================================================================
+
+# ===================================================================
+# BASIC SITE SETTINGS
+# ===================================================================
+
+baseURL = 'https://yourblog.com/'
+languageCode = 'en-us'
+title = 'Your Site Title'
+theme = 'barkAtTheMoon'
+
+# ===================================================================
+# PAGINATION
+# ===================================================================
+# Number of posts per page in list views
+
+[pagination]
+    pagerSize = 10
+
+# ===================================================================
+# TAXONOMIES
+# ===================================================================
+# Enable tags and series for organizing content
+
+[taxonomies]
+    series = 'series'
+    tags = 'tags'
+
+# ===================================================================
+# THEME PARAMETERS
+# ===================================================================
+
+[params]
+    # ===============================================================
+    # BRAND & IDENTITY
+    # ===============================================================
+
+    # Your name or site title (appears in sidebar and header)
+    brand = "Your Name"
+
+    # Profile image path (relative to /static/)
+    # Recommended: Square format, 400x400px or larger
+    # Supported formats: JPG, PNG, WebP
+    # Place file in /static/images/ directory
+    brand_image = "/images/profile.jpg"
+
+    # Your tagline, role, or short bio
+    description = "Software Developer & Writer"
+
+    # ===============================================================
+    # HOMEPAGE CONFIGURATION
+    # ===============================================================
+    # Note: Content from content/_index.md will appear between
+    # description and navigation links on the homepage
+
+    # ===============================================================
+    # NAVIGATION MENU
+    # ===============================================================
+    # Configure sidebar/mobile menu items
+    #
+    # Menu item properties:
+    #   - Name: Display text in menu
+    #   - URL: Link destination (relative or absolute)
+    #   - Pre: Optional prefix text (e.g., "Recent")
+    #   - HasChildren: If true, shows child items/recent posts
+    #   - Limit: Max items to show (only if HasChildren=true)
+
+    menu = [
+        # Blog posts section with recent 5 posts
+        {Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 5},
+
+        # Static pages
+        {Name = "About", URL = "/about/", HasChildren = false},
+        {Name = "Contact", URL = "/contact/", HasChildren = false},
+
+        # Links collection
+        {Name = "Links", URL = "/links/", HasChildren = true},
+
+        # Example: External link
+        # {Name = "GitHub", URL = "https://github.com/yourusername", HasChildren = false},
+    ]
+
+    # ===============================================================
+    # SIDEBAR
+    # ===============================================================
+
+    # Optional: Additional about text in sidebar (below social icons)
+    # sidebar_about = "A brief bio that appears in the sidebar below social links."
+
+    # ===============================================================
+    # SOCIAL LINKS
+    # ===============================================================
+    # Add your social media profiles
+    # The theme automatically shows icons for configured platforms
+    # Comment out or remove any you don't use
+
+    # --- PRIMARY PLATFORMS ---
+
+    # Email (mailto: link)
+    email_url = "mailto:you@example.com"
+
+    # GitHub profile
+    github_url = "https://github.com/yourusername"
+
+    # LinkedIn profile
+    linkedin_url = "https://www.linkedin.com/in/yourprofile/"
+
+    # Twitter/X profile (use either twitter_url or x_url)
+    twitter_url = "https://twitter.com/yourusername"
+    # x_url = "https://x.com/yourusername"
+
+    # --- SOCIAL MEDIA ---
+
+    # Facebook profile
+    # facebook_url = "https://facebook.com/yourusername"
+
+    # Instagram profile
+    # instagram_url = "https://instagram.com/yourusername"
+
+    # YouTube channel
+    # youtube_url = "https://youtube.com/@yourusername"
+
+    # --- FEDIVERSE / DECENTRALIZED ---
+
+    # Mastodon profile (include full URL with your instance)
+    # mastodon_url = "https://mastodon.social/@yourusername"
+
+    # Bluesky profile
+    # bluesky_url = "https://bsky.app/profile/yourusername.bsky.social"
+
+    # --- MESSAGING PLATFORMS ---
+
+    # Discord server invite or profile
+    # discord_url = "https://discord.gg/yourinvite"
+
+    # Telegram profile or group
+    # telegram_url = "https://t.me/yourusername"
+
+    # Signal contact (can be a signal.me link)
+    # signal_url = "https://signal.me/#p/yourusername"
+
+    # --- DEVELOPMENT PLATFORMS ---
+
+    # GitLab profile
+    # gitlab_url = "https://gitlab.com/yourusername"
+
+    # --- OTHER PLATFORMS ---
+
+    # Flickr photostream
+    # flickr_url = "https://flickr.com/photos/yourusername"
+
+    # Matrix chat
+    # matrix_url = "https://matrix.to/#/@yourusername:matrix.org"
+
+    # XMPP/Jabber contact
+    # xmpp_url = "xmpp:you@example.com"
+
+    # ===============================================================
+    # THEME SETTINGS
+    # ===============================================================
+
+    # Show "Theme: barkAtTheMoon" credit in sidebar
+    # Set to false to hide the theme credit
+    show_theme_credit = true
+
+# ===================================================================
+# ADDITIONAL HUGO SETTINGS (OPTIONAL)
+# ===================================================================
+
+# --- OUTPUT FORMATS ---
+# Enable RSS feed (automatically generated)
+# [outputs]
+#     home = ["HTML", "RSS"]
+#     section = ["HTML", "RSS"]
+
+# --- PERMALINKS ---
+# Customize URL structure for posts
+# [permalinks]
+#     posts = "/:year/:month/:slug/"
+
+# --- MARKUP ---
+# Configure markdown rendering
+# [markup]
+#     [markup.goldmark]
+#         [markup.goldmark.renderer]
+#             unsafe = true  # Allow raw HTML in markdown
+#     [markup.highlight]
+#         style = "monokai"  # Syntax highlighting theme
+
+# --- PRIVACY ---
+# Configure privacy settings for embedded content
+# [privacy]
+#     [privacy.youtube]
+#         privacyEnhanced = true
+
+# ===================================================================
+# END OF CONFIGURATION
+# ===================================================================

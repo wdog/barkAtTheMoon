@@ -153,7 +153,7 @@ theme = 'barkAtTheMoon'
     # youtube_url, signal_url, bluesky_url, etc.
 
     # === THEME SETTINGS ===
-    show_theme_credit = true    # Show "Theme: barkAtTheMoon" in sidebar/footer
+    show_theme_credit = true    # Show "Theme: barkAtTheMoon" in sidebar
 
 [taxonomies]
     series = 'series'
@@ -521,7 +521,7 @@ primary: { 500: '#60a5fa' }  // Bright blue accents
 | `--sidebar-description` | `gray.300` | Descriptions |
 | `--sidebar-icon` | `gray.300` | Social icons |
 | `--sidebar-divider` | `gray.600` | Divider lines |
-| `--sidebar-credit` | `gray.100` | Footer credits |
+| `--sidebar-credit` | `gray.100` | Credits text |
 | `--badge-bg` | `primary.100` | Tag backgrounds |
 | `--badge-text` | `primary.700` | Tag text |
 | `--badge-serie-bg` | `purple.100` | Series backgrounds |
