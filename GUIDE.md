@@ -117,12 +117,12 @@ Configure your sidebar/mobile menu:
 
 ```toml
 [params]
-    menu = [
-        {Name = "Posts", URL = "/posts/", Pre = "Recent", HasChildren = true, Limit = 5},
+      menu = [
+        {Name = "Posts", URL = "/posts/", HasChildren = true,Limit = 5},
         {Name = "About", URL = "/about/", HasChildren = false},
-        {Name = "Links", URL = "/links/", HasChildren = false},
+        {Name = "Links", URL = "/links/", HasChildren = true},
         {Name = "Contact", URL = "/contact/", HasChildren = false},
-    ]
+      ]
 ```
 
 **Menu item properties:**
@@ -133,6 +133,25 @@ Configure your sidebar/mobile menu:
 - `Limit` - Max items to show if HasChildren is true
 
 ## Creating Content
+
+### Quick start - Create Common Sections
+
+```bash
+# Content from content/_index.md will appear between description and navigation links
+hugo new content/_index.md
+
+# static pages
+hugo new content/about/_index.md
+hugo new content/contact/_index.md
+
+# post
+hugo new content/posts/my-first-post.md
+
+# link
+hugo new content/links/useful-resource.md
+
+```
+
 
 ### Blog Posts
 
