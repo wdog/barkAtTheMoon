@@ -1,0 +1,50 @@
+<!-- Table of Contents - Sticky Sidebar -->
+{{ if and .TableOfContents (gt (len .TableOfContents) 50) }}
+{{ if not .Params.hideToc }}
+<aside id="toc-container" class="toc-wrapper">
+    <!-- TOC Header (static) -->
+    <div class="toc-header">
+        <h2 class="toc-title">TOC</h2>
+    </div>
+
+    <!-- TOC Content (always visible) -->
+    <div id="toc-content" class="toc-content">
+        <nav class="toc-nav">
+            {{ .TableOfContents }}
+        </nav>
+    </div>
+</aside>
+
+<script>
+(function() {
+    // Highlight active section on scroll
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const id = entry.target.getAttribute('id');
+            if (!id) return;
+
+            const tocLink = document.querySelector(`#toc-content a[href="#${id}"]`);
+            if (!tocLink) return;
+
+            if (entry.isIntersecting) {
+                // Remove active class from all links
+                document.querySelectorAll('#toc-content a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                // Add active class to current link
+                tocLink.classList.add('active');
+            }
+        });
+    }, {
+        rootMargin: '-100px 0px -66%',
+        threshold: 0
+    });
+
+    // Observe all headings in the content
+    document.querySelectorAll('.content h1[id], .content h2[id], .content h3[id]').forEach(heading => {
+        observer.observe(heading);
+    });
+})();
+</script>
+{{ end }}
+{{ end }}

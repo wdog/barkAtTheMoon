@@ -1,8 +1,8 @@
 {{ define "main" }}
-<div class="max-w-4xl mx-auto">
+<div class="max-w-5xl mx-auto">
     <!-- List Header -->
     <header class="mb-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        <h1 class="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">
             {{ .Title }}
         </h1>
         {{ with .Description }}
@@ -14,7 +14,7 @@
 
     <!-- List Content -->
     {{ if .Content }}
-    <div class="prose prose-lg dark:prose-invert mb-12">
+    <div class="mb-12 prose prose-lg dark:prose-invert">
         {{ .Content }}
     </div>
     {{ end }}
@@ -24,8 +24,8 @@
     {{ if gt (len $paginator.Pages) 0 }}
     <div class="space-y-8">
         {{ range $paginator.Pages }}
-        <article class="card hover:shadow-lg transition-shadow duration-200">
-            <div class="flex flex-col md:flex-row md:items-start gap-4">
+        <article class="transition-shadow duration-200 card hover:shadow-lg">
+            <div class="flex flex-col gap-4 md:flex-row md:items-start">
                 <!-- Date Badge (if available) -->
                 {{ if .Date }}
                 <div class="flex-shrink-0">
@@ -39,15 +39,15 @@
 
                 <!-- Content -->
                 <div class="flex-1 min-w-0">
-                    <h2 class="text-2xl font-bold mb-2">
+                    <h2 class="mb-2 text-2xl font-bold">
                         <a href="{{ .RelPermalink }}"
-                            class="text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            class="text-gray-900 transition-colors dark:text-white hover:text-primary-600 dark:hover:text-primary-400">
                             {{ .Title }}
                         </a>
                     </h2>
 
                     <!-- Meta Info -->
-                    <div class="flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-400 mb-3">
+                    <div class="flex flex-wrap items-center gap-3 mb-3 text-sm text-gray-600 dark:text-gray-400">
                         {{ if .ReadingTime }}
                         <span class="flex items-center gap-1">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,7 +69,7 @@
 
                     <!-- Summary -->
                     {{ with .Summary }}
-                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                    <p class="mb-4 text-gray-700 dark:text-gray-300">
                         {{ . }}
                     </p>
                     {{ end }}
@@ -78,7 +78,7 @@
                     {{ if .Params.tags }}
                     <div class="flex flex-wrap gap-2 mb-3">
                         {{ range first 3 .Params.tags }}
-                        <span class="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded">
+                        <span class="px-2 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded dark:bg-gray-700 dark:text-gray-300">
                             #{{ . }}
                         </span>
                         {{ end }}
@@ -87,7 +87,7 @@
 
                     <!-- Read More Link -->
                     <a href="{{ .RelPermalink }}"
-                        class="inline-flex items-center gap-1 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors">
+                        class="inline-flex items-center gap-1 font-medium transition-colors text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300">
                         Read more
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -101,12 +101,12 @@
 
     <!-- Pagination -->
     {{ if gt $paginator.TotalPages 1 }}
-    <nav class="mt-12 flex justify-center">
+    <nav class="flex justify-center mt-12">
         <ul class="flex items-center gap-2">
             {{ if $paginator.HasPrev }}
             <li>
                 <a href="{{ $paginator.Prev.URL }}"
-                    class="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                    class="px-4 py-2 text-gray-700 transition-colors bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
                     Previous
                 </a>
             </li>
@@ -124,7 +124,7 @@
             {{ if $paginator.HasNext }}
             <li>
                 <a href="{{ $paginator.Next.URL }}"
-                    class="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                    class="px-4 py-2 text-gray-700 transition-colors bg-white border border-gray-300 rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
                     Next
                 </a>
             </li>
@@ -135,7 +135,7 @@
 
     {{ else }}
     <!-- No content message -->
-    <div class="text-center py-12">
+    <div class="py-12 text-center">
         <p class="text-xl text-gray-600 dark:text-gray-400">
             No content found yet. Check back soon!
         </p>

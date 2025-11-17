@@ -2,25 +2,25 @@
 
 ## Overview
 
-Questo tema utilizza un sistema di **CSS Variables** e **classi semantiche** per permettere una facile personalizzazione senza modificare i template HTML.
+This theme uses a system of **CSS Variables** and **semantic classes** to allow easy customization without modifying HTML templates.
 
-## Come Funziona
+## How It Works
 
 ### 1. CSS Variables (`:root`)
 
-Tutte le variabili di colore sono definite in `main.css` nella sezione `:root`. Puoi modificare questi valori per cambiare i colori del tema.
+All color variables are defined in `main.css` in the `:root` section. You can modify these values to change the theme colors.
 
-**Posizione**: `/themes/barkAtTheMoon/assets/css/main.css` (righe 5-46)
+**Location**: `/themes/barkAtTheMoon/assets/css/main.css` (lines 5-46)
 
-### 2. Classi Semantiche
+### 2. Semantic Classes
 
-I template HTML usano classi semantiche invece di utility Tailwind dirette. Questo permette di cambiare gli stili modificando solo il CSS.
+HTML templates use semantic classes instead of direct Tailwind utilities. This allows you to change styles by modifying only the CSS.
 
 ---
 
 ## Sidebar - CSS Variables
 
-### Background e Bordi
+### Background and Borders
 
 ```css
 --sidebar-bg: theme('colors.gray.700');
@@ -29,52 +29,52 @@ I template HTML usano classi semantiche invece di utility Tailwind dirette. Ques
 --sidebar-border-dark: theme('colors.gray.700');
 ```
 
-**Dove si usa**: Sfondo e bordo della sidebar
+**Used for**: Sidebar background and border
 
-**Come modificare**:
+**How to modify**:
 ```css
 :root {
-  --sidebar-bg: theme('colors.blue.900');  /* Cambia sfondo sidebar */
-  --sidebar-border: theme('colors.blue.700'); /* Cambia bordo */
+  --sidebar-bg: theme('colors.blue.900');  /* Change sidebar background */
+  --sidebar-border: theme('colors.blue.700'); /* Change border */
 }
 ```
 
 ---
 
-### Titolo Sito
+### Site Title
 
 ```css
 --sidebar-title: theme('colors.white');
 --sidebar-title-hover: theme('colors.primary.300');
 ```
 
-**Dove si usa**: Nome del sito nella sidebar
+**Used for**: Site name in the sidebar
 
 **Template**: `<a class="sidebar-title">`
 
-**Come modificare**:
+**How to modify**:
 ```css
 :root {
-  --sidebar-title: theme('colors.yellow.400'); /* Titolo giallo */
+  --sidebar-title: theme('colors.yellow.400'); /* Yellow title */
   --sidebar-title-hover: theme('colors.yellow.300');
 }
 ```
 
 ---
 
-### Descrizione
+### Description
 
 ```css
 --sidebar-description: theme('colors.gray.300');
 ```
 
-**Dove si usa**: Sottotitolo/descrizione sotto il nome del sito
+**Used for**: Subtitle/description under the site name
 
 **Template**: `<p class="sidebar-description">`
 
 ---
 
-### Link Menu
+### Menu Links
 
 ```css
 --sidebar-link: theme('colors.gray.200');
@@ -84,11 +84,11 @@ I template HTML usano classi semantiche invece di utility Tailwind dirette. Ques
 --sidebar-link-active-bg: theme('colors.primary.900');
 ```
 
-**Dove si usa**: Link di navigazione nella sidebar (Home, About, Posts, etc.)
+**Used for**: Navigation links in the sidebar (Home, About, Posts, etc.)
 
-**Template**: `<a class="sidebar-link">` e `<a class="sidebar-link active">`
+**Template**: `<a class="sidebar-link">` and `<a class="sidebar-link active">`
 
-**Come modificare**:
+**How to modify**:
 ```css
 :root {
   --sidebar-link: theme('colors.blue.200');
@@ -99,26 +99,26 @@ I template HTML usano classi semantiche invece di utility Tailwind dirette. Ques
 
 ---
 
-### Icone Social
+### Social Icons
 
 ```css
 --sidebar-icon: theme('colors.gray.300');
 --sidebar-icon-hover: theme('colors.white');
 ```
 
-**Dove si usa**: Icone GitHub, LinkedIn, Email
+**Used for**: GitHub, LinkedIn, Email icons
 
 **Template**: `<a class="sidebar-icon">`
 
 ---
 
-### Separatori
+### Dividers
 
 ```css
 --sidebar-divider: theme('colors.gray.600');
 ```
 
-**Dove si usa**: Linee di separazione tra sezioni
+**Used for**: Separation lines between sections
 
 **Template**: `<div class="sidebar-divider">`
 
@@ -133,15 +133,15 @@ I template HTML usano classi semantiche invece di utility Tailwind dirette. Ques
 --sidebar-credit-link-hover-dark: theme('colors.primary.400');
 ```
 
-**Dove si usa**: Testo e link del footer (Powered by Hugo, Theme credit)
+**Used for**: Footer text and links (Powered by Hugo, Theme credit)
 
-**Template**: `<p class="sidebar-credit">` e `<a class="sidebar-credit-link">`
+**Template**: `<p class="sidebar-credit">` and `<a class="sidebar-credit-link">`
 
-**Come modificare**:
+**How to modify**:
 ```css
 :root {
-  --sidebar-credit: theme('colors.gray.200'); /* Testo più chiaro */
-  --sidebar-credit-link-hover: theme('colors.yellow.400'); /* Hover giallo */
+  --sidebar-credit: theme('colors.gray.200'); /* Lighter text */
+  --sidebar-credit-link-hover: theme('colors.yellow.400'); /* Yellow hover */
 }
 ```
 
@@ -149,7 +149,7 @@ I template HTML usano classi semantiche invece di utility Tailwind dirette. Ques
 
 ## Badge - CSS Variables
 
-### Badge Normali (Tags)
+### Regular Badges (Tags)
 
 ```css
 --badge-bg: theme('colors.primary.100');
@@ -158,9 +158,9 @@ I template HTML usano classi semantiche invece di utility Tailwind dirette. Ques
 --badge-hover-text: theme('colors.primary.800');
 ```
 
-**Dove si usa**: Tag badge sui post
+**Used for**: Tag badges on posts
 
-**Come modificare**:
+**How to modify**:
 ```css
 :root {
   --badge-bg: theme('colors.green.100');
@@ -170,7 +170,7 @@ I template HTML usano classi semantiche invece di utility Tailwind dirette. Ques
 
 ---
 
-### Badge Serie
+### Series Badges
 
 ```css
 --badge-serie-bg: theme('colors.purple.100');
@@ -179,46 +179,46 @@ I template HTML usano classi semantiche invece di utility Tailwind dirette. Ques
 --badge-serie-hover-text: theme('colors.purple.800');
 ```
 
-**Dove si usa**: Badge per serie di post
+**Used for**: Badges for post series
 
 ---
 
-## Classi Semantiche Disponibili
+## Available Semantic Classes
 
 ### Sidebar Components
 
-| Classe | Uso | Template |
-|--------|-----|----------|
-| `.sidebar-title` | Titolo principale | `<a class="sidebar-title">` |
-| `.sidebar-description` | Descrizione/sottotitolo | `<p class="sidebar-description">` |
-| `.sidebar-link` | Link di navigazione | `<a class="sidebar-link">` |
-| `.sidebar-link.active` | Link attivo | `<a class="sidebar-link active">` |
-| `.sidebar-icon` | Icone social | `<a class="sidebar-icon">` |
-| `.sidebar-divider` | Separatore | `<div class="sidebar-divider">` |
-| `.sidebar-text` | Testo generico | `<p class="sidebar-text">` |
-| `.sidebar-heading` | Intestazione sezione | `<h3 class="sidebar-heading">` |
-| `.sidebar-credit` | Testo credits footer | `<p class="sidebar-credit">` |
-| `.sidebar-credit-link` | Link credits footer | `<a class="sidebar-credit-link">` |
+| Class | Usage | Template |
+|-------|-------|----------|
+| `.sidebar-title` | Main title | `<a class="sidebar-title">` |
+| `.sidebar-description` | Description/subtitle | `<p class="sidebar-description">` |
+| `.sidebar-link` | Navigation links | `<a class="sidebar-link">` |
+| `.sidebar-link.active` | Active link | `<a class="sidebar-link active">` |
+| `.sidebar-icon` | Social icons | `<a class="sidebar-icon">` |
+| `.sidebar-divider` | Divider | `<div class="sidebar-divider">` |
+| `.sidebar-text` | Generic text | `<p class="sidebar-text">` |
+| `.sidebar-heading` | Section heading | `<h3 class="sidebar-heading">` |
+| `.sidebar-credit` | Credits footer text | `<p class="sidebar-credit">` |
+| `.sidebar-credit-link` | Credits footer links | `<a class="sidebar-credit-link">` |
 
 ---
 
-## Esempi di Personalizzazione
+## Customization Examples
 
-### Esempio 1: Sidebar con Tema Blu
+### Example 1: Blue Sidebar Theme
 
 ```css
 :root {
-  /* Sidebar blu scura */
+  /* Dark blue sidebar */
   --sidebar-bg: theme('colors.blue.900');
   --sidebar-border: theme('colors.blue.700');
 
-  /* Link blu chiari */
+  /* Light blue links */
   --sidebar-link: theme('colors.blue.200');
   --sidebar-link-hover-bg: theme('colors.blue.800');
 }
 ```
 
-### Esempio 2: Badge Verdi
+### Example 2: Green Badges
 
 ```css
 :root {
@@ -228,7 +228,7 @@ I template HTML usano classi semantiche invece di utility Tailwind dirette. Ques
 }
 ```
 
-### Esempio 3: Sidebar Chiara (Light Theme)
+### Example 3: Light Sidebar (Light Theme)
 
 ```css
 :root {
@@ -241,80 +241,80 @@ I template HTML usano classi semantiche invece di utility Tailwind dirette. Ques
 
 ---
 
-## File da Modificare
+## Files to Modify
 
-### Per Cambiare i Colori
+### To Change Colors
 
 **File**: `/themes/barkAtTheMoon/assets/css/main.css`
 
-**Sezione**: Cerca `:root {` all'inizio del file (dopo i `@tailwind`)
+**Section**: Look for `:root {` at the beginning of the file (after the `@tailwind` directives)
 
-### Per Cambiare la Struttura
+### To Change Structure
 
 **File**: `/themes/barkAtTheMoon/layouts/partials/sidebar.html`
 
-**Nota**: Quando modifichi il template, usa sempre le classi semantiche definite nel CSS.
+**Note**: When modifying templates, always use the semantic classes defined in CSS.
 
 ---
 
 ## Best Practices
 
-1. **Non modificare direttamente Tailwind classes nei template**
+1. **Don't modify Tailwind classes directly in templates**
    - ❌ `<a class="text-gray-300 hover:text-white">`
    - ✅ `<a class="sidebar-link">`
 
-2. **Usa le CSS variables per i colori**
+2. **Use CSS variables for colors**
    - ❌ `color: #ffffff;`
    - ✅ `color: var(--sidebar-title);`
 
-3. **Mantieni consistenza semantica**
-   - Usa `.sidebar-link` per tutti i link della sidebar
-   - Usa `.sidebar-icon` per tutte le icone
+3. **Maintain semantic consistency**
+   - Use `.sidebar-link` for all sidebar links
+   - Use `.sidebar-icon` for all icons
 
-4. **Testa in light e dark mode**
-   - Alcune variabili hanno versioni `-dark` separate
+4. **Test in both light and dark mode**
+   - Some variables have separate `-dark` versions
 
 ---
 
 ## Debugging
 
-### Come vedere quali variabili vengono usate
+### How to see which variables are being used
 
-1. Apri DevTools nel browser
-2. Ispeziona un elemento (es. un link della sidebar)
-3. Cerca `var(--sidebar-link)` negli stili applicati
-4. Puoi modificare temporaneamente il valore per testare
+1. Open DevTools in the browser
+2. Inspect an element (e.g., a sidebar link)
+3. Look for `var(--sidebar-link)` in the applied styles
+4. You can temporarily modify the value to test
 
-### Come aggiungere nuove variabili
+### How to add new variables
 
-1. Aggiungi in `:root` in `main.css`:
+1. Add to `:root` in `main.css`:
    ```css
    :root {
-     --mia-nuova-variabile: theme('colors.red.500');
+     --my-new-variable: theme('colors.red.500');
    }
    ```
 
-2. Usa nel CSS:
+2. Use in CSS:
    ```css
-   .mia-classe {
-     color: var(--mia-nuova-variabile);
+   .my-class {
+     color: var(--my-new-variable);
    }
    ```
 
-3. Usa nel template:
+3. Use in template:
    ```html
-   <div class="mia-classe">Contenuto</div>
+   <div class="my-class">Content</div>
    ```
 
 ---
 
-## Supporto
+## Support
 
-Per domande o problemi con il sistema CSS helper:
-- Controlla questo README
-- Ispeziona il codice in `main.css` (le variabili sono ben commentate)
-- Usa DevTools per vedere gli stili applicati
+For questions or issues with the CSS helper system:
+- Check this README
+- Inspect the code in `main.css` (variables are well-commented)
+- Use DevTools to see applied styles
 
 **Theme**: barkAtTheMoon
-**Sistema**: CSS Variables + Semantic Classes
+**System**: CSS Variables + Semantic Classes
 **Framework**: TailwindCSS + Hugo

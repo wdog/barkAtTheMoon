@@ -1,4 +1,4 @@
-# barkAtTheMoon 🌙
+# Bark At The Moon Hugo Theme 🌙
 
 A modern, minimal Hugo theme built with TailwindCSS.
 

@@ -1,219 +1,219 @@
-# 🎨 Sistema di Theming - barkAtTheMoon
+# 🎨 Theming System - barkAtTheMoon
 
-## Come Funziona
+## How It Works
 
-Il tema usa un **sistema integrato** di Tailwind CSS + CSS Variables:
+The theme uses an **integrated system** of Tailwind CSS + CSS Variables:
 
 ```
-tailwind.config.js  →  CSS Variables  →  Componenti
+tailwind.config.js  →  CSS Variables  →  Components
 ------------------     --------------     ----------
 gray: {                :root {             <a class="sidebar-link">
   700: '#334155'  →      --sidebar-bg:      ↑
-}                        theme('gray.700')  usa la variabile
+}                        theme('gray.700')  uses the variable
                        }
 ```
 
-### ✨ Vantaggio Principale
+### ✨ Main Advantage
 
-**Cambi solo `tailwind.config.js` e tutto si aggiorna automaticamente!**
+**Change only `tailwind.config.js` and everything updates automatically!**
 
 ---
 
-## 🔧 Guida Rapida
+## 🔧 Quick Guide
 
-### Per Cambiare i Colori della Sidebar
+### To Change Sidebar Colors
 
-**1. Apri** `/themes/barkAtTheMoon/tailwind.config.js`
+**1. Open** `/themes/barkAtTheMoon/tailwind.config.js`
 
-**2. Modifica** la palette `gray`:
+**2. Modify** the `gray` palette:
 
 ```javascript
 colors: {
   gray: {
-    200: '#e0e7ff',  // Link normali
-    300: '#c7d2fe',  // Descrizione, icone
+    200: '#e0e7ff',  // Normal links
+    300: '#c7d2fe',  // Description, icons
     600: '#6366f1',  // Divider
-    700: '#4338ca',  // Background sidebar (← PRINCIPALE)
+    700: '#4338ca',  // Sidebar background (← MAIN)
     800: '#3730a3',  // Hover background
     900: '#312e81',  // Border
   },
 }
 ```
 
-**3. Salva** - Hugo ricompila automaticamente ✅
+**3. Save** - Hugo automatically recompiles ✅
 
 ---
 
-## 📋 Mappatura Completa
+## 📋 Complete Mapping
 
-### Tailwind → CSS Variables → Dove si Usa
+### Tailwind → CSS Variables → Where Used
 
-| Tailwind Color | CSS Variable | Componente |
-|----------------|--------------|------------|
-| `gray.700` | `--sidebar-bg` | Sfondo sidebar |
-| `gray.900` | `--sidebar-border` | Bordo sidebar |
-| `gray.200` | `--sidebar-link` | Link menu |
-| `gray.300` | `--sidebar-description` | Descrizione/icone |
-| `gray.600` | `--sidebar-divider` | Linee separatrici |
-| `gray.800` | `--sidebar-link-hover-bg` | Sfondo hover link |
-| `white` | `--sidebar-title` | Titolo sito |
-| `primary.300` | `--sidebar-title-hover` | Hover titolo |
-| `primary.200` | `--sidebar-link-active` | Link attivo |
-| `primary.900` | `--sidebar-link-active-bg` | Sfondo link attivo |
+| Tailwind Color | CSS Variable | Component |
+|----------------|--------------|-----------|
+| `gray.700` | `--sidebar-bg` | Sidebar background |
+| `gray.900` | `--sidebar-border` | Sidebar border |
+| `gray.200` | `--sidebar-link` | Menu links |
+| `gray.300` | `--sidebar-description` | Description/icons |
+| `gray.600` | `--sidebar-divider` | Divider lines |
+| `gray.800` | `--sidebar-link-hover-bg` | Link hover background |
+| `white` | `--sidebar-title` | Site title |
+| `primary.300` | `--sidebar-title-hover` | Title hover |
+| `primary.200` | `--sidebar-link-active` | Active link |
+| `primary.900` | `--sidebar-link-active-bg` | Active link background |
 
 ### Footer Credits
 
-| Tailwind Color | CSS Variable | Componente |
-|----------------|--------------|------------|
-| `gray.100` | `--sidebar-credit` | Testo credits (light) |
-| `gray.500` | `--sidebar-credit-dark` | Testo credits (dark) |
-| `primary.200` | `--sidebar-credit-link-hover` | Hover link (light) |
-| `primary.400` | `--sidebar-credit-link-hover-dark` | Hover link (dark) |
+| Tailwind Color | CSS Variable | Component |
+|----------------|--------------|-----------|
+| `gray.100` | `--sidebar-credit` | Credits text (light) |
+| `gray.500` | `--sidebar-credit-dark` | Credits text (dark) |
+| `primary.200` | `--sidebar-credit-link-hover` | Link hover (light) |
+| `primary.400` | `--sidebar-credit-link-hover-dark` | Link hover (dark) |
 
 ### Badge Colors
 
-| Tailwind Color | CSS Variable | Componente |
-|----------------|--------------|------------|
-| `primary.100` | `--badge-bg` | Sfondo tag |
-| `primary.700` | `--badge-text` | Testo tag |
-| `purple.100` | `--badge-serie-bg` | Sfondo serie |
-| `purple.700` | `--badge-serie-text` | Testo serie |
+| Tailwind Color | CSS Variable | Component |
+|----------------|--------------|-----------|
+| `primary.100` | `--badge-bg` | Tag background |
+| `primary.700` | `--badge-text` | Tag text |
+| `purple.100` | `--badge-serie-bg` | Series background |
+| `purple.700` | `--badge-serie-text` | Series text |
 
 ---
 
-## 💡 Esempi Pratici
+## 💡 Practical Examples
 
-### Esempio 1: Sidebar Blu
+### Example 1: Blue Sidebar
 
 ```javascript
 // tailwind.config.js
 colors: {
   gray: {
-    700: '#1e3a8a',  // Blu scuro
+    700: '#1e3a8a',  // Dark blue
     800: '#1e40af',
     900: '#1e293b',
-    // ... altri
+    // ... others
   }
 }
 ```
 
-Risultato: Sidebar blu scura automaticamente! 🎉
+Result: Dark blue sidebar automatically! 🎉
 
-### Esempio 2: Badge Verdi
+### Example 2: Green Badges
 
 ```javascript
 // tailwind.config.js
 colors: {
   primary: {
-    100: '#d1fae5',  // Verde chiaro
-    700: '#047857',  // Verde scuro
-    // ... altri
+    100: '#d1fae5',  // Light green
+    700: '#047857',  // Dark green
+    // ... others
   }
 }
 ```
 
-Risultato: Tutti i badge diventano verdi! 🎉
+Result: All badges become green! 🎉
 
-### Esempio 3: Override Manuale
+### Example 3: Manual Override
 
-Se vuoi cambiare SOLO un colore senza toccare Tailwind:
+If you want to change ONLY one color without touching Tailwind:
 
 ```css
 /* main.css */
 @layer base {
   :root {
-    --sidebar-bg: #dc2626;  /* Rosso custom */
+    --sidebar-bg: #dc2626;  /* Custom red */
   }
 }
 ```
 
 ---
 
-## 🎯 Workflow Consigliato
+## 🎯 Recommended Workflow
 
-### Per Cambiare il Tema Completo:
+### To Change the Complete Theme:
 
-1. ✅ Modifica `tailwind.config.js` (palette gray e primary)
-2. ✅ Salva e testa
-3. ✅ Fatto!
+1. ✅ Modify `tailwind.config.js` (gray and primary palettes)
+2. ✅ Save and test
+3. ✅ Done!
 
-### Per Override Puntuale:
+### For Specific Override:
 
-1. ✅ Modifica `main.css` (una variabile specifica)
-2. ✅ Usa `theme('colors.xxx')` o un hex diretto
-3. ✅ Fatto!
+1. ✅ Modify `main.css` (one specific variable)
+2. ✅ Use `theme('colors.xxx')` or a direct hex value
+3. ✅ Done!
 
 ---
 
-## 📁 File da Modificare
+## 📁 Files to Modify
 
-### Cambio Colori Globale
+### Global Color Change
 - **File**: `/themes/barkAtTheMoon/tailwind.config.js`
-- **Cosa modificare**: Sezione `colors` (gray, primary, purple)
+- **What to modify**: `colors` section (gray, primary, purple)
 
-### Override Specifico
+### Specific Override
 - **File**: `/themes/barkAtTheMoon/assets/css/main.css`
-- **Cosa modificare**: Sezione `:root` dentro `@layer base`
+- **What to modify**: `:root` section inside `@layer base`
 
-### Template HTML
+### HTML Templates
 - **File**: `/themes/barkAtTheMoon/layouts/partials/*.html`
-- **Cosa modificare**: Usa classi semantiche (`.sidebar-link`, `.sidebar-title`, etc.)
-- **NON modificare**: I colori (usa le CSS variables!)
+- **What to modify**: Use semantic classes (`.sidebar-link`, `.sidebar-title`, etc.)
+- **DON'T modify**: Colors (use CSS variables!)
 
 ---
 
 ## 🔍 Debugging
 
-### Come Vedere Quali Variabili Vengono Usate
+### How to See Which Variables Are Used
 
-1. **Apri DevTools** nel browser (F12)
-2. **Ispeziona** un elemento (es. link sidebar)
-3. **Guarda** la tab "Computed" o "Styles"
-4. **Cerca** `var(--sidebar-link)` → vedrai il valore effettivo
+1. **Open DevTools** in browser (F12)
+2. **Inspect** an element (e.g., sidebar link)
+3. **Look** at the "Computed" or "Styles" tab
+4. **Search** for `var(--sidebar-link)` → you'll see the actual value
 
-### Come Testare un Colore Temporaneamente
+### How to Test a Color Temporarily
 
 **In DevTools**:
 ```css
-/* Cambia temporaneamente */
---sidebar-bg: #ff0000;  /* Rosso per test */
+/* Change temporarily */
+--sidebar-bg: #ff0000;  /* Red for testing */
 ```
 
-**Nel Browser**: Vedi subito il risultato!
+**In Browser**: See the result immediately!
 
 ---
 
-## 🚨 Errori Comuni
+## 🚨 Common Errors
 
-### ❌ "I colori non cambiano"
+### ❌ "Colors don't change"
 
-**Causa**: Hai modificato solo `tailwind.config.js` ma il browser ha la cache
+**Cause**: You modified only `tailwind.config.js` but the browser has cache
 
-**Soluzione**: Hard refresh (`Ctrl+Shift+R`)
+**Solution**: Hard refresh (`Ctrl+Shift+R`)
 
-### ❌ "Le variabili non funzionano"
+### ❌ "Variables don't work"
 
-**Causa**: Hai usato `theme()` fuori da `@layer base`
+**Cause**: You used `theme()` outside `@layer base`
 
-**Soluzione**: Assicurati che `:root` sia dentro `@layer base`
+**Solution**: Make sure `:root` is inside `@layer base`
 
 ```css
-/* ✅ CORRETTO */
+/* ✅ CORRECT */
 @layer base {
   :root {
     --sidebar-bg: theme('colors.gray.700');
   }
 }
 
-/* ❌ SBAGLIATO */
+/* ❌ WRONG */
 :root {
-  --sidebar-bg: theme('colors.gray.700');  /* Non dentro @layer */
+  --sidebar-bg: theme('colors.gray.700');  /* Not inside @layer */
 }
 ```
 
 ---
 
-## 📚 Riferimenti
+## 📚 References
 
 - **Tailwind Colors**: https://tailwindcss.com/docs/customizing-colors
 - **CSS Variables**: https://developer.mozilla.org/en-US/docs/Web/CSS/--*
@@ -222,5 +222,5 @@ Se vuoi cambiare SOLO un colore senza toccare Tailwind:
 ---
 
 **Theme**: barkAtTheMoon
-**Sistema**: Tailwind CSS + CSS Variables (sincronizzato)
-**Ultima modifica**: 2025-11-17
+**System**: Tailwind CSS + CSS Variables (synchronized)
+**Last modified**: 2025-11-17
