@@ -2,6 +2,12 @@
 
 Feature da implementare per rendere il tema ancora più completo.
 
+## TODO URGENTI
+
+- syntax highlight in light mode
+- pagina demo markdown nel demosite del tema
+
+
 ## 🎯 Suggerimenti
 
 ### 1. **RSS Feed Migliorato**
