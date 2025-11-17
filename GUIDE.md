@@ -25,6 +25,8 @@ Make sure you have:
 ```bash
 # Navigate to your blog root (where hugo.toml is located)
 cd /path/to/your/blog
+git init
+git submodule add https://github.com/yourusername/barkAtTheMoon themes/barkAtTheMoon
 
 # Install dependencies in the blog root
 # IMPORTANT: Use TailwindCSS v3.x (NOT v4) - the theme is built for v3
