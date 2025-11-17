@@ -368,10 +368,126 @@ themes/barkAtTheMoon/exampleSite/layouts/index.html.custom-example
 
 This is the old-style homepage that uses custom CSS classes.
 
+### Color Customization
+
+The theme uses a **dual-layer color system** combining Tailwind CSS configuration with CSS Variables for maximum flexibility.
+
+#### Method 1: Global Color Scheme (Recommended)
+
+**Edit `tailwind.config.js` to change the entire color scheme:**
+
+The theme uses two main color palettes:
+- **`gray`** - Sidebar, backgrounds, and neutral elements
+- **`primary`** - Accent colors, links, and interactive elements
+
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        // Sidebar and neutral colors
+        gray: {
+          200: '#e0e7ff',  // Sidebar links
+          300: '#c7d2fe',  // Descriptions, icons
+          600: '#6366f1',  // Dividers
+          700: '#4338ca',  // Sidebar background (MAIN COLOR)
+          800: '#3730a3',  // Hover backgrounds
+          900: '#312e81',  // Borders
+        },
+        // Accent colors
+        primary: {
+          100: '#dbeafe',  // Tag backgrounds (light)
+          200: '#bfdbfe',  // Active links
+          300: '#93c5fd',  // Title hover
+          400: '#60a5fa',  // Links
+          500: '#3b82f6',  // Primary accent
+          600: '#2563eb',  // Headings
+          700: '#1d4ed8',  // Tag text (dark)
+          800: '#1e40af',  // Hover states
+          900: '#1e3a8a',  // Active backgrounds
+        }
+      }
+    }
+  }
+}
+```
+
+**Quick theme examples:**
+
+```js
+// Blue theme (default)
+gray: { 700: '#1e3a8a' }  // Dark blue sidebar
+primary: { 500: '#3b82f6' }  // Blue accents
+
+// Purple theme
+gray: { 700: '#581c87' }  // Dark purple sidebar
+primary: { 500: '#a855f7' }  // Purple accents
+
+// Green theme
+gray: { 700: '#166534' }  // Dark green sidebar
+primary: { 500: '#22c55e' }  // Green accents
+
+// Dark theme
+gray: { 700: '#1f2937' }  // Charcoal sidebar
+primary: { 500: '#60a5fa' }  // Bright blue accents
+```
+
+#### Method 2: CSS Variable Overrides (Specific Changes)
+
+**Edit `assets/css/main.css` to override specific colors without touching Tailwind:**
+
+```css
+/* assets/css/main.css */
+@layer base {
+  :root {
+    /* Override specific colors */
+    --sidebar-bg: #dc2626;  /* Custom red sidebar */
+    --sidebar-link: #fef3c7;  /* Cream links */
+    --badge-bg: #dcfce7;  /* Light green badges */
+    --badge-text: #166534;  /* Dark green text */
+  }
+
+  .dark {
+    /* Dark mode specific overrides */
+    --sidebar-bg: #991b1b;  /* Darker red in dark mode */
+  }
+}
+```
+
+**Available CSS Variables:**
+
+| Variable | Default | Usage |
+|----------|---------|-------|
+| `--sidebar-bg` | `gray.700` | Sidebar background |
+| `--sidebar-border` | `gray.900` | Sidebar border |
+| `--sidebar-title` | `white` | Site name |
+| `--sidebar-title-hover` | `primary.300` | Site name hover |
+| `--sidebar-link` | `gray.200` | Menu links |
+| `--sidebar-link-hover-bg` | `gray.800` | Link hover background |
+| `--sidebar-link-active` | `primary.200` | Active link |
+| `--sidebar-description` | `gray.300` | Descriptions |
+| `--sidebar-icon` | `gray.300` | Social icons |
+| `--sidebar-divider` | `gray.600` | Divider lines |
+| `--sidebar-credit` | `gray.100` | Footer credits |
+| `--badge-bg` | `primary.100` | Tag backgrounds |
+| `--badge-text` | `primary.700` | Tag text |
+| `--badge-serie-bg` | `purple.100` | Series backgrounds |
+| `--badge-serie-text` | `purple.700` | Series text |
+
+**See full documentation:** `assets/css/THEMING.md` and `assets/css/README.md`
+
+#### Color Customization Workflow
+
+1. **Global theme change**: Edit `tailwind.config.js` → Save → Hugo auto-rebuilds ✅
+2. **Specific override**: Edit `assets/css/main.css` → Save → Hugo auto-rebuilds ✅
+3. **Test in browser**: Hard refresh (`Ctrl+Shift+R`) if needed
+4. **Check dark mode**: Toggle dark mode to verify both themes
+
 ### Tailwind Configuration
 
 Customize TailwindCSS in `tailwind.config.js`:
-- Colors
+- Colors (see above for detailed guide)
 - Fonts
 - Spacing
 - Breakpoints
@@ -411,27 +527,6 @@ The theme includes several custom CSS classes and components defined in `themes/
 @layer components {
   .my-custom-component {
     @apply bg-primary-600 text-white rounded-lg p-4;
-  }
-}
-```
-
-**Color customization:**
-
-Edit `tailwind.config.js` to customize the primary color palette:
-
-```js
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        primary: {
-          // Customize these values
-          50: '#eff6ff',
-          // ... through to ...
-          900: '#1e3a8a',
-        }
-      }
-    }
   }
 }
 ```

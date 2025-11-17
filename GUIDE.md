@@ -1,4 +1,4 @@
-# barkAtTheMoon Theme - Quick Start Guide
+# Bark At The Moon Hugo Theme - Quick Start Guide
 
 A step-by-step guide to get your blog up and running with the barkAtTheMoon theme.
 
@@ -227,20 +227,54 @@ Dark mode is automatic! Users can toggle between light/dark with the button in:
 
 Their preference is saved in localStorage.
 
-### Colors
+### Colors - How to Customize Your Blog
 
-Customize the primary color scheme by editing `tailwind.config.js`:
+The barkAtTheMoon theme uses a **powerful dual-layer color system** that makes customization easy and flexible.
+
+#### Quick Start: Two Ways to Change Colors
+
+1. **Global Color Change** (Recommended) - Change the entire color scheme
+2. **Specific Overrides** - Change individual elements only
+
+---
+
+#### Method 1: Global Color Change (Easiest!)
+
+**Edit this file:** `themes/barkAtTheMoon/tailwind.config.js`
+
+The theme uses two color palettes:
+
+| Palette | Controls |
+|---------|----------|
+| **`gray`** | Sidebar, backgrounds, borders, neutral text |
+| **`primary`** | Links, buttons, tags, headings, accents |
+
+**Example - Purple Theme:**
 
 ```js
+// tailwind.config.js
 module.exports = {
   theme: {
     extend: {
       colors: {
+        // Sidebar colors
+        gray: {
+          200: '#e9d5ff',  // Light purple links
+          300: '#d8b4fe',  // Icons, descriptions
+          600: '#a855f7',  // Dividers
+          700: '#581c87',  // Sidebar background ← MAIN COLOR
+          800: '#6b21a8',  // Hover backgrounds
+          900: '#4c1d95',  // Borders
+        },
+        // Accent colors
         primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          // ... customize all shades
-          900: '#1e3a8a',
+          100: '#fae8ff',  // Tag backgrounds
+          200: '#f5d0fe',  // Active links
+          300: '#f0abfc',  // Hover effects
+          500: '#a855f7',  // Primary accent
+          600: '#9333ea',  // Headings
+          700: '#7e22ce',  // Dark text
+          900: '#581c87',  // Active backgrounds
         }
       }
     }
@@ -248,9 +282,110 @@ module.exports = {
 }
 ```
 
+**More Quick Examples:**
+
+```js
+// Green Theme
+gray: { 700: '#166534' }    // Dark green sidebar
+primary: { 500: '#22c55e' }  // Green accents
+
+// Blue Theme (default)
+gray: { 700: '#1e3a8a' }    // Dark blue sidebar
+primary: { 500: '#3b82f6' }  // Blue accents
+
+// Charcoal Theme
+gray: { 700: '#1f2937' }    // Charcoal sidebar
+primary: { 500: '#60a5fa' }  // Bright blue accents
+
+// Orange Theme
+gray: { 700: '#78350f' }    // Brown sidebar
+primary: { 500: '#f59e0b' }  // Amber accents
+```
+
+**Steps:**
+1. Edit `tailwind.config.js`
+2. Save the file
+3. Hugo rebuilds automatically
+4. Refresh browser (`Ctrl+Shift+R`)
+5. Done! ✅
+
+---
+
+#### Method 2: Specific Element Overrides
+
+**Want to change ONLY the sidebar? Or just the tags?**
+
+**Edit this file:** `themes/barkAtTheMoon/assets/css/main.css`
+
+**Example - Red Sidebar Only:**
+
+```css
+/* Add inside @layer base in main.css */
+@layer base {
+  :root {
+    --sidebar-bg: #dc2626;        /* Red sidebar */
+    --sidebar-border: #991b1b;    /* Dark red border */
+    --sidebar-link: #fef2f2;      /* Cream links */
+  }
+
+  .dark {
+    --sidebar-bg: #991b1b;  /* Darker in dark mode */
+  }
+}
+```
+
+**Example - Green Tags Only:**
+
+```css
+@layer base {
+  :root {
+    --badge-bg: #dcfce7;      /* Light green */
+    --badge-text: #166534;    /* Dark green */
+  }
+}
+```
+
+**All Available CSS Variables:**
+
+| Variable | What It Controls |
+|----------|------------------|
+| `--sidebar-bg` | Sidebar background |
+| `--sidebar-border` | Sidebar border |
+| `--sidebar-title` | Your site name |
+| `--sidebar-title-hover` | Site name hover |
+| `--sidebar-link` | Menu links |
+| `--sidebar-link-hover-bg` | Link hover background |
+| `--sidebar-link-active` | Active page link |
+| `--sidebar-description` | Description text |
+| `--sidebar-icon` | Social icons |
+| `--sidebar-divider` | Divider lines |
+| `--sidebar-credit` | Footer credits |
+| `--badge-bg` | Tag background |
+| `--badge-text` | Tag text |
+| `--badge-serie-bg` | Series badge background |
+| `--badge-serie-text` | Series badge text |
+
+📖 **Complete guide:** See `assets/css/THEMING.md` for detailed documentation
+
+---
+
+#### Which Method Should I Use?
+
+| What You Want | Method | File to Edit |
+|---------------|--------|--------------|
+| Change entire color scheme | 1 | `tailwind.config.js` |
+| Change only sidebar | 2 | `main.css` |
+| Change only tags | 2 | `main.css` |
+| Quick experiment | 2 | `main.css` |
+| Professional theme | 1 | `tailwind.config.js` |
+
+💡 **Pro tip:** Use Method 2 to experiment, then Method 1 for your final design.
+
+---
+
 ### Custom CSS
 
-Add custom styles to `themes/barkAtTheMoon/assets/css/main.css`:
+Add your own custom styles to `themes/barkAtTheMoon/assets/css/main.css`:
 
 ```css
 @layer components {
@@ -264,6 +399,8 @@ Add custom styles to `themes/barkAtTheMoon/assets/css/main.css`:
 - `.tag-badge` - Tag badge styling
 - `.tag-count` - Tag count pill
 - `.sidebar` - Sidebar layout
+- `.sidebar-link` - Menu links
+- `.sidebar-icon` - Social icons
 
 ### Typography
 
