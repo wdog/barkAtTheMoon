@@ -23,20 +23,21 @@ Make sure you have:
 **IMPORTANT: Install npm dependencies in your blog's root directory, NOT in the theme directory.**
 
 ```bash
-# Navigate to your blog root (where hugo.toml is located)
-cd /path/to/your/blog
+# == Navigate to your blog root (where hugo.toml is located)
+hugo new site MyBlog
+cd MyBlog
 git init
-git submodule add https://github.com/yourusername/barkAtTheMoon themes/barkAtTheMoon
+git submodule add git://github.com:wdog/barkAtTheMoon themes/barkAtTheMoon
 
-# Install dependencies in the blog root
+# == Install dependencies in the blog root
 # IMPORTANT: Use TailwindCSS v3.x (NOT v4) - the theme is built for v3
 npm install --save-dev tailwindcss@^3
 npm install --save-dev postcss postcss-cli autoprefixer
 
-# Copy required config files to blog root (if not already present)
+# == Copy required config files to blog root (if not already present)
 cp themes/barkAtTheMoon/tailwind.config.js .
 
-# Create postcss.config.js in blog root
+# == Create postcss.config.js in blog root
 cat > postcss.config.js << 'EOF'
 module.exports = {
   plugins: {
@@ -46,7 +47,23 @@ module.exports = {
 }
 EOF
 
-# Start development server
+
+# == Quick start - Create Common Sections ==
+# Content from content/_index.md will appear between description and navigation links
+hugo new content/_index.md
+
+# static pages
+hugo new content/about/_index.md
+hugo new content/contact/_index.md
+
+# post
+hugo new content/posts/my-first-post.md
+
+# link
+hugo new content/links/useful-resource.md
+
+
+# == Start development server
 hugo server -D
 
 # Build for production
@@ -135,24 +152,6 @@ Configure your sidebar/mobile menu:
 - `Limit` - Max items to show if HasChildren is true
 
 ## Creating Content
-
-### Quick start - Create Common Sections
-
-```bash
-# Content from content/_index.md will appear between description and navigation links
-hugo new content/_index.md
-
-# static pages
-hugo new content/about/_index.md
-hugo new content/contact/_index.md
-
-# post
-hugo new content/posts/my-first-post.md
-
-# link
-hugo new content/links/useful-resource.md
-
-```
 
 
 ### Blog Posts
