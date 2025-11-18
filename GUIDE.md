@@ -37,6 +37,9 @@ npm install --save-dev postcss postcss-cli autoprefixer
 # == Copy required config files to blog root (if not already present)
 cp themes/barkAtTheMoon/tailwind.config.js .
 
+# == Copy default config and edit manually
+cp themes/barkAtTheMoon/hugo.toml.example hugo.toml
+
 # == Create postcss.config.js in blog root
 cat > postcss.config.js << 'EOF'
 module.exports = {
